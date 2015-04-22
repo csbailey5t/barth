@@ -2,6 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
+
+# NB: BS is producing a different node structure, so ignore Chrome dev tools.
+# Next, need to walk over the contents, parsing them into Sections and
+# SectionContents to populate the Paragraphs.
+
+
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
 class Paragraphs:
