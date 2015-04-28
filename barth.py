@@ -65,13 +65,16 @@ def download_volume(url):
         section = Section(None, None)
         page.sections.append(section)
         div = title.find_next_sibling('div')
+        # TODO: find section numbers and start new Section objects
         for p in div :
             if hasattr(p, 'get_text') :
+                # TODO: handle page numbers
                 for seg in re.split(r'(-- - --)', p.get_text()) :
                     if '--' in seg :
                         section.contents.append(SectionContents(SectionContents.PAGE_BREAK, None))
                     else :
                         section.contents.append(SectionContents(SectionContents.TEXT, seg))
+        # TODO: get unique file names (from the paragraph #) to write each paragraph to a new file
         open('preface.json', 'w').write(json.dumps(page, cls=JSONEncoder))
         raise SystemExit()
 
