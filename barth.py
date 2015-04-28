@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+import re
+import json
 
 
 # NB: BS is producing a different node structure, so ignore Chrome dev tools.
@@ -10,7 +12,7 @@ from urllib.parse import urljoin
 
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
-class Paragraphs:
+class Paragraph:
     def __init__(self, url, title, abstract, sections=None):
         self.url = url
         self.title = title
@@ -32,6 +34,12 @@ class SectionContents:
         self.content_type = content_type
         self.data = data
 
+class JSONEncoder(json.JSONEncoder) :
+    def default(self, obj) :
+        if isinstance(obj, (Paragraph, Section, SectionContents)) :
+            return obj.__dict__
+        return json.JSONEncoder.default(self, obj)
+
 
 def download_links(url, link_text):
     page = requests.get(url)
@@ -45,9 +53,28 @@ def download_volume(url):
     for url in download_links(url, 'View Text'):
         page = requests.get(url)
         soup = BeautifulSoup(page.text)
-        title = soup.find(class_='head').get_text()
+        title = soup.find(class_='head')
+        if (title.get_text() == "EDITORS' PREFACE") :
+            continue
+
+        # open('filename.html', 'w').write(soup.prettify())
+        # raise SystemExit()
+
         abstract = '\n'.join(hibold.get_text() for hibold in soup.find_all(class_='hibold'))
-        p = Paragraph(url, title, abstract)
+        page = Paragraph(url, title.get_text(), abstract)
+        section = Section(None, None)
+        page.sections.append(section)
+        div = title.find_next_sibling('div')
+        for p in div :
+            if hasattr(p, 'get_text') :
+                for seg in re.split(r'(-- - --)', p.get_text()) :
+                    if '--' in seg :
+                        section.contents.append(SectionContents(SectionContents.PAGE_BREAK, None))
+                    else :
+                        section.contents.append(SectionContents(SectionContents.TEXT, seg))
+        open('preface.json', 'w').write(json.dumps(page, cls=JSONEncoder))
+        raise SystemExit()
+
 
 def main(url = TOC_URL):
     for url in download_links(url, 'Table of Contents'):
