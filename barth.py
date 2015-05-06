@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import re
 import json
+import os
+import shutil
 
 
 # NB: BS is producing a different node structure, so ignore Chrome dev tools.
@@ -49,10 +51,42 @@ def download_links(url, link_text):
         if link_text in a.get_text():
             yield urljoin(page.url, a['href'])
 
+def find_title ( soup ):
+    node = soup.find(is_a_name)
+    if node is None:
+        return None
+
+    (paragraph, volume)  = node.find_next_siblings('i')
+    match = re.search(r'\d+', paragraph.text)
+    if match:
+        paragraph = int(match.group(0))
+    else:
+        paragraph = 0
+
+    match = re.search(r'([IVX]+),(\d+)', volume.text)
+    volume = match.group(1)
+    part_volume = int(match.group(2))
+
+    return (volume, part_volume, paragraph)
+
+def make_title( loc, dirname='output', ext='json' ):
+    (v, pv, p) = loc
+    n = 0
+    template = os.path.join(dirname, '{}-{:02}-{:02}-{{}}.{}'.format(v, pv, p, ext))
+    while True:
+        filename = template.format(n)
+        if not os.path.exists(filename):
+            return filename
+        n += 1
+
+def is_a_name ( node ):
+    return node.name == 'a' and node.has_attr('name')
+
 def download_volume(url):
     for url in download_links(url, 'View Text'):
         page = requests.get(url)
         soup = BeautifulSoup(page.text)
+        loc = find_title( soup )
         title = soup.find(class_='head')
         if (title.get_text() == "EDITORS' PREFACE") :
             continue
@@ -74,12 +108,16 @@ def download_volume(url):
                         section.contents.append(SectionContents(SectionContents.PAGE_BREAK, None))
                     else :
                         section.contents.append(SectionContents(SectionContents.TEXT, seg))
-        # TODO: get unique file names (from the paragraph #) to write each paragraph to a new file
-        open('preface.json', 'w').write(json.dumps(page, cls=JSONEncoder))
-        raise SystemExit()
+        filename = make_title( loc )
+        print('Writing {} to {}'.format( loc, filename ))
+        with open(filename, 'w') as f:
+            json.dump(page, f, cls=JSONEncoder)
+        # raise SystemExit()
 
 
 def main(url = TOC_URL):
+    shutil.rmtree('output')
+    os.makedirs('output')
     for url in download_links(url, 'Table of Contents'):
         download_volume(url)
 
