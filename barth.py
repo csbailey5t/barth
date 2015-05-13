@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from lxml import etree
 from urllib.parse import urljoin
 import re
 import json
@@ -45,18 +45,18 @@ class JSONEncoder(json.JSONEncoder) :
 
 def download_links(url, link_text):
     page = requests.get(url)
-    soup = BeautifulSoup(page.text)
+    soup = etree.HTML(page.text)
 
-    for a in soup.find_all('a'):
-        if link_text in a.get_text():
-            yield urljoin(page.url, a['href'])
+    for a in soup.findall('.//a'):
+        if link_text in ''.join(a.itertext()):
+            yield urljoin(page.url, a.get('href'))
 
 def find_title ( soup ):
-    node = soup.find(is_a_name)
+    node = soup.find('.//a[@name]')
     if node is None:
         return None
 
-    (paragraph, volume)  = node.find_next_siblings('i')
+    (paragraph, volume)  = list(node.itersiblings('i'))
     match = re.search(r'\d+', paragraph.text)
     if match:
         paragraph = int(match.group(0))
@@ -82,28 +82,40 @@ def make_title( loc, dirname='output', ext='json' ):
 def is_a_name ( node ):
     return node.name == 'a' and node.has_attr('name')
 
+def find_span(el, class_):
+    return el.find(".//span[@class='{}']".format(class_))
+
+def find_spans(el, class_):
+    return el.findall(".//span[@class='{}']".format(class_))
+
+
+def get_text(el):
+    return ''.join(el.itertext())
+
 def download_volume(url):
     for url in download_links(url, 'View Text'):
         page = requests.get(url)
-        soup = BeautifulSoup(page.text)
+        soup = etree.HTML(page.text)
         loc = find_title( soup )
-        title = soup.find(class_='head')
-        if (title.get_text() == "EDITORS' PREFACE") :
+        title = find_span(soup, 'head')
+        if title is None:
+            raise Exception('No <span class="head"> found.')
+        if (get_text(title) == "EDITORS' PREFACE") :
             continue
 
         # open('filename.html', 'w').write(soup.prettify())
         # raise SystemExit()
 
-        abstract = '\n'.join(hibold.get_text() for hibold in soup.find_all(class_='hibold'))
-        page = Paragraph(url, title.get_text(), abstract)
+        abstract = '\n'.join(get_text(hibold) for hibold in find_spans(soup, 'hibold'))
+        page = Paragraph(url, get_text(title), abstract)
         section = Section(None, None)
         page.sections.append(section)
-        div = title.find_next_sibling('div')
+        div = iter(title.itersiblings('div')).__next__()
         # TODO: find section numbers and start new Section objects
         for p in div :
             if hasattr(p, 'get_text') :
                 # TODO: handle page numbers
-                for seg in re.split(r'(-- - --)', p.get_text()) :
+                for seg in re.split(r'(-- - --)', get_text(p)) :
                     if '--' in seg :
                         section.contents.append(SectionContents(SectionContents.PAGE_BREAK, None))
                     else :
@@ -113,7 +125,7 @@ def download_volume(url):
         with open(filename, 'w') as f:
             json.dump(page, f, cls=JSONEncoder, indent=2)
         with open(filename + '.html', 'w') as f:
-            f.write(soup.prettify())
+            f.write(etree.tostring(soup, pretty_print=True, method='html').decode('utf8'))
         # raise SystemExit()
 
 
