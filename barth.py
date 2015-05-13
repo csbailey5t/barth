@@ -111,7 +111,9 @@ def download_volume(url):
         filename = make_title( loc )
         print('Writing {} to {}'.format( loc, filename ))
         with open(filename, 'w') as f:
-            json.dump(page, f, cls=JSONEncoder)
+            json.dump(page, f, cls=JSONEncoder, indent=2)
+        with open(filename + '.html', 'w') as f:
+            f.write(soup.prettify())
         # raise SystemExit()
 
 
