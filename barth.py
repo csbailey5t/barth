@@ -14,20 +14,61 @@ import shutil
 
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
+
 class Paragraph:
+
     def __init__(self, url, title, abstract, sections=None):
         self.url = url
         self.title = title
         self.abstract = abstract
         self.sections = sections or []
 
+    def write(self, soup):
+        loc = find_title(soup)
+        filename = make_title(loc)
+        print('Writing {} to {}'.format(loc, filename))
+        with open(filename, 'w') as f:
+            json.dump(self, f, cls=JSONEncoder, indent=2)
+        with open(filename + '.html', 'w') as f:
+            f.write(etree.tostring(
+                soup,
+                pretty_print=True,
+                method='html'
+                ).decode('utf8'))
+
+    @staticmethod
+    def parse(url, title, soup):
+        abstract = '\n'.join(
+            get_text(hibold) for hibold in find_spans(soup, 'hibold')
+            )
+        para = Paragraph(url, get_text(title), abstract)
+
+        section = Section.parse(title)
+        para.sections.append(section)
+
+        return para
+
+
 class Section:
+
     def __init__(self, number, title, contents=None):
         self.number = number
         self.title = title
         self.contents = contents or []
 
+    @staticmethod
+    def parse(title):
+        section = Section(None, None)
+        div = iter(title.itersiblings('div')).__next__()
+        # TODO: find section numbers and start new Section objects
+        for p in div:
+            if hasattr(p, 'get_text'):
+                section.contents.extend(SectionContents.parse(p))
+        return section
+
+
 class SectionContents:
+
     EXCURSUS = 0
     TEXT = 1
     PAGE_BREAK = 2
@@ -35,6 +76,26 @@ class SectionContents:
     def __init__(self, content_type, data):
         self.content_type = content_type
         self.data = data
+
+    @staticmethod
+    def parse(p):
+        # TODO: handle page numbers
+        for seg in re.split(r'(-- - --)', get_text(p)) :
+            if '--' in seg :
+                yield SectionContents.parse_page(seg)
+            else :
+                yield SectionContents.parse_text(seg)
+
+    @staticmethod
+    def parse_page(seg):
+        """Returns a page break section."""
+        return SectionContents(SectionContents.PAGE_BREAK, None)
+
+    @staticmethod
+    def parse_text(seg):
+        """Returns a text section."""
+        return SectionContents(SectionContents.TEXT, seg)
+
 
 class JSONEncoder(json.JSONEncoder) :
     def default(self, obj) :
@@ -92,41 +153,19 @@ def find_spans(el, class_):
 def get_text(el):
     return ''.join(el.itertext())
 
-def download_volume(url):
-    for url in download_links(url, 'View Text'):
-        page = requests.get(url)
-        soup = etree.HTML(page.text)
-        loc = find_title( soup )
+
+def download_volume(parent_url):
+    for url in download_links(parent_url, 'View Text'):
+        resp = requests.get(url)
+        soup = etree.HTML(resp.text)
         title = find_span(soup, 'head')
         if title is None:
             raise Exception('No <span class="head"> found.')
         if (get_text(title) == "EDITORS' PREFACE") :
             continue
 
-        # open('filename.html', 'w').write(soup.prettify())
-        # raise SystemExit()
-
-        abstract = '\n'.join(get_text(hibold) for hibold in find_spans(soup, 'hibold'))
-        page = Paragraph(url, get_text(title), abstract)
-        section = Section(None, None)
-        page.sections.append(section)
-        div = iter(title.itersiblings('div')).__next__()
-        # TODO: find section numbers and start new Section objects
-        for p in div :
-            if hasattr(p, 'get_text') :
-                # TODO: handle page numbers
-                for seg in re.split(r'(-- - --)', get_text(p)) :
-                    if '--' in seg :
-                        section.contents.append(SectionContents(SectionContents.PAGE_BREAK, None))
-                    else :
-                        section.contents.append(SectionContents(SectionContents.TEXT, seg))
-        filename = make_title( loc )
-        print('Writing {} to {}'.format( loc, filename ))
-        with open(filename, 'w') as f:
-            json.dump(page, f, cls=JSONEncoder, indent=2)
-        with open(filename + '.html', 'w') as f:
-            f.write(etree.tostring(soup, pretty_print=True, method='html').decode('utf8'))
-        # raise SystemExit()
+        page = Paragraph.parse(url, title, soup)
+        page.write(soup)
 
 
 def main(url = TOC_URL):
