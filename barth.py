@@ -5,6 +5,7 @@ import re
 import json
 import os
 import shutil
+import itertools
 
 
 # NB: BS is producing a different node structure, so ignore Chrome dev tools.
@@ -37,14 +38,17 @@ class Paragraph:
                 ).decode('utf8'))
 
     @staticmethod
-    def parse(url, title, soup):
+    def parse(url, soup):
+        heads = list(find_spans(soup, 'head'))
+        para_head = heads.pop(0)
         abstract = '\n'.join(
-            get_text(hibold) for hibold in find_spans(soup, 'hibold')
+            get_text(div) for div in para_head.itersiblings('div')
             )
-        para = Paragraph(url, get_text(title), abstract)
 
-        section = Section.parse(title)
-        para.sections.append(section)
+        para = Paragraph(url, get_text(para_head), abstract)
+        para.sections += (
+            Section.parse(section_head) for section_head in heads
+            )
 
         return para
 
@@ -57,13 +61,12 @@ class Section:
         self.contents = contents or []
 
     @staticmethod
-    def parse(title):
-        section = Section(None, None)
-        div = iter(title.itersiblings('div')).__next__()
-        # TODO: find section numbers and start new Section objects
-        for p in div:
-            if hasattr(p, 'get_text'):
-                section.contents.extend(SectionContents.parse(p))
+    def parse(head):
+        # TODO: find section numbers
+        section = Section(None, get_text(head))
+        section.contents += itertools.chain.from_iterable(
+            SectionContents.parse(sibling) for sibling in head.itersiblings()
+            )
         return section
 
 
@@ -78,23 +81,17 @@ class SectionContents:
         self.data = data
 
     @staticmethod
-    def parse(p):
-        # TODO: handle page numbers
-        for seg in re.split(r'(-- - --)', get_text(p)) :
-            if '--' in seg :
-                yield SectionContents.parse_page(seg)
-            else :
-                yield SectionContents.parse_text(seg)
+    def parse(tag):
+        content_type = SectionContents.TEXT
+        if tag.get('class') == 'excursus':
+            content_type = SectionContents.EXCURSUS
 
-    @staticmethod
-    def parse_page(seg):
-        """Returns a page break section."""
-        return SectionContents(SectionContents.PAGE_BREAK, None)
-
-    @staticmethod
-    def parse_text(seg):
-        """Returns a text section."""
-        return SectionContents(SectionContents.TEXT, seg)
+        for seg in re.split(r'(-- - --)', get_text(tag)):
+            if '--' in seg:
+                # TODO: handle page numbers
+                yield SectionContents(SectionContents.PAGE_BREAK, None)
+            else:
+                yield SectionContents(content_type, seg)
 
 
 class JSONEncoder(json.JSONEncoder) :
@@ -156,6 +153,7 @@ def get_text(el):
 
 def download_volume(parent_url):
     for url in download_links(parent_url, 'View Text'):
+        # print('Downloading {}'.format(url))
         resp = requests.get(url)
         soup = etree.HTML(resp.text)
         title = find_span(soup, 'head')
@@ -164,7 +162,7 @@ def download_volume(parent_url):
         if (get_text(title) == "EDITORS' PREFACE") :
             continue
 
-        page = Paragraph.parse(url, title, soup)
+        page = Paragraph.parse(url, soup)
         page.write(soup)
 
 
