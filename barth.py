@@ -42,7 +42,7 @@ class Paragraph:
         heads = list(find_spans(soup, 'head'))
         para_head = heads.pop(0)
         abstract = '\n'.join(
-            get_text(div) for div in para_head.itersiblings('div')
+            get_text(div) for div in find_spans(soup, 'hibold')
             )
 
         para = Paragraph(url, get_text(para_head), abstract)
@@ -169,7 +169,8 @@ def download_volume(parent_url):
 def main(url = TOC_URL):
     shutil.rmtree('output')
     os.makedirs('output')
-    for url in download_links(url, 'Table of Contents'):
+    volume_links = list(download_links(url, 'Table of Contents'))
+    for url in volume_links[:-2]:
         download_volume(url)
 
 if __name__ == '__main__':
