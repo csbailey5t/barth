@@ -11,6 +11,8 @@ import itertools
 # NB: BS is producing a different node structure, so ignore Chrome dev tools.
 # Next, need to walk over the contents, parsing them into Sections and
 # SectionContents to populate the Paragraphs.
+#
+# New way forward due to messy markup: just grab the page, find the root, get text. Don't worry about what we're failing to get by not having the complex data model.
 
 
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
