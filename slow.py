@@ -1,20 +1,53 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+import os
+import shutil
 
-def main():
+TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
-    page = requests.get('http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/getobject.pl?c.830:1.barth')
+def write_paragraph(filename, text, dirname='paragraphs'):
+    completeName = os.path.join(dirname, filename+'.txt')
+    print('Writing ' + completeName)
+    with open(completeName, 'w') as f:
+        f.write(text)
+
+def download_links(url, link_text):
+    page = requests.get(url)
     soup = BeautifulSoup(page.text)
 
-    head = soup.find('span', {'class': 'head'})
+    for a in soup.find_all('a'):
+        if link_text in a.get_text():
+            yield urljoin(page.url, a['href'])
 
-    body = head.parent
+def download_volume(url):
+    for url in download_links(url, 'View Text'):
+        page = requests.get(url)
+        soup = BeautifulSoup(page.text)
+        head = soup.find('span', {'class': 'head'})
+        title = head.get_text()
 
-    paragraph_text = body.get_text()
+        if title is None:
+            raise Exception('No <span class=head> found.')
+        if (title == "EDITORS' PREFACE"):
+            continue
 
-    f = open('part_volume_one.txt', 'w')
-    f.write(paragraph_text)
-    f.close()
+        filename = title.replace(' ', '_').lower()
+        abstract = '\n'.join(hibold.get_text() for hibold in soup.find_all(class_='hibold'))
+        content = head.parent
+        paragraph_text = content.get_text()
+
+        write_paragraph(filename, paragraph_text)
+
+def main(url = TOC_URL):
+
+    shutil.rmtree('paragraphs')
+    os.makedirs('paragraphs')
+
+    volume_links = list(download_links(url, 'Table of Contents'))
+    for url in volume_links[:-2]:
+        download_volume(url)
+
 
 if __name__ == '__main__':
     main()
