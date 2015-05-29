@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import os
 import shutil
+import re
 
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
@@ -11,6 +12,19 @@ def write_paragraph(filename, text, dirname='paragraphs'):
     print('Writing ' + completeName)
     with open(completeName, 'w') as f:
         f.write(text)
+
+def get_paragraph_number(soup):
+    node = soup.find('a', {'name': True})
+    if node is None:
+        return None
+
+    loc = node.next_sibling.next_sibling
+    match = re.search(r'\d+', loc.text)
+    if match:
+        paragraph = int(match.group(0))
+    else:
+        paragraph = 0
+    return paragraph
 
 def download_links(url, link_text):
     page = requests.get(url)
@@ -33,9 +47,13 @@ def download_volume(url):
             continue
 
         filename = title.replace(' ', '_').lower()
+        number = str(get_paragraph_number(soup))
+        filename = number + '.' + filename
+
         abstract = '\n'.join(hibold.get_text() for hibold in soup.find_all(class_='hibold'))
         content = head.parent
         paragraph_text = content.get_text()
+
 
         write_paragraph(filename, paragraph_text)
 
