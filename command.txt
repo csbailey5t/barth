@@ -1,0 +1,1 @@
+mal train-topics --input barth/barth.mallet --num-topics 20 --num-iterations 2000 --optimize-interval 20 --output-state barth/topic-state.gz --output-topic-keys barth/barth_keys.txt --output-doc-topics barth/barth_composition.txt --output-topic-docs barth/prominent_topics_per_paragraph.txt
