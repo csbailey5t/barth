@@ -7,3 +7,8 @@ share/
 output/
 preface.json
 filename.html
+
+mallet_results/paragraphs/
+paragraphs/
+
+.DS_Store
