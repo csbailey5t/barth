@@ -1,8 +1,6 @@
-// Need to sort - break apart filename, force first item to be number, and sort
-
 var margin = {top: 20, right: 100, bottom: 300, left: 40},
-    width = 1580 - margin.left - margin.right,
-    height = 1400 - margin.top - margin.bottom;
+    width = 1780 - margin.left - margin.right,
+    height = 1200 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], 0.1);
@@ -38,7 +36,11 @@ d3.csv("mallet_results/barth_composition.txt", function(error, data) {
   });
 
   var getFilename = function(d) { return d.file.split('/').pop(); };
-
+  data.sort( function( a, b ){
+    a = +getFilename(a).split('.').shift();
+    b = +getFilename(b).split('.').shift();
+    return d3.ascending( a, b );
+  });
   x.domain(data.map(getFilename));
 
   svg.append("g")
