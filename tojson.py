@@ -30,3 +30,6 @@ for (i, (w0, rows0)) in enumerate(by_word):
             'target': j,
             'weight': dist(weights0, weights1),
             })
+
+with open('weights.json', 'w') as f:
+    json.dump({'nodes': nodes, 'links': links}, f)
