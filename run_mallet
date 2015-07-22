@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+KEY=barth
+INPUT=paragraphs/
+
+/Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output $KEY.mallet --keep-sequence --remove-stopwords
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input $KEY.mallet --num-topics 20 \
+	--output-model $KEY.model --output-state $KEY.state.gz --output-doc-topics $KEY.doc.topics \
+	--output-topic-keys $KEY.keys \
+  --topic-word-weights-file $KEY.weights --word-topic-counts-file $KEY.words
