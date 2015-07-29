@@ -46,8 +46,8 @@ def get_links(by_word):
     task_by_word = functools.partial(task, by_word_indexed)
 
     start = datetime.datetime.now()
-    with Pool(CPU_COUNT) as pool:
-        links += pool.imap(task_by_word, by_word_indexed, CHUNK_SIZE)
+    with Pool(CPU_COUNT, maxtasksperchild=10) as pool:
+        links += pool.imap_unordered(task_by_word, by_word_indexed, CHUNK_SIZE)
     done = datetime.datetime.now()
 
     print('Elapsed time = {}'.format(done - start))
