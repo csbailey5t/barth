@@ -3,6 +3,15 @@ import json
 import itertools
 import operator
 import math
+from multiprocessing import Pool
+import functools
+import datetime
+import os
+
+
+# Parallelization parameters
+CPU_COUNT = os.cpu_count()
+CHUNK_SIZE = 32
 
 
 def dist(xs, ys):
@@ -12,10 +21,10 @@ def dist(xs, ys):
 get_weight = operator.itemgetter(2)
 
 
-def task(by_word, i, job_data):
-    (w0, rows0) = job_data
+def task(by_word, job_data):
+    (i, (w0, rows0)) = job_data
     links = []
-    for (j, (w1, rows1)) in enumerate(by_word):
+    for (j, (w1, rows1)) in by_word:
         if w0 == w1:
             continue
         weights0 = (get_weight(w) for w in rows0)
@@ -28,13 +37,32 @@ def task(by_word, i, job_data):
     return links
 
 
+def get_links(by_word):
+    print('Running ({}) parallel tasks (chunk size {})'.format(
+        CPU_COUNT, CHUNK_SIZE))
+    links = []
+
+    by_word_indexed = list(enumerate(by_word))
+    task_by_word = functools.partial(task, by_word_indexed)
+
+    start = datetime.datetime.now()
+    with Pool(CPU_COUNT) as pool:
+        links += pool.imap(task_by_word, by_word_indexed, CHUNK_SIZE)
+    done = datetime.datetime.now()
+
+    print('Elapsed time = {}'.format(done - start))
+    return links
+
+
 def main():
+    print('Reading weights')
     with open('barth.weights') as f:
         rows = [
             (int(t), w, float(n)) for (t, w, n) in csv.reader(f, 'excel-tab')
             ]
 
     # sort rows by word
+    print('Preparing data')
     rows.sort(key=operator.itemgetter(1))
     by_word = [
         (w, list(rws))
@@ -45,12 +73,13 @@ def main():
         for (w, rws) in by_word
         ]
 
-    links = []
-    for (i, job) in enumerate(by_word):
-        links += task(by_word, i, job)
+    links = get_links(by_word)
 
+    print('Writing output')
     with open('weights.json', 'w') as f:
         json.dump({'nodes': nodes, 'links': links}, f)
+
+    print('done')
 
 
 if __name__ == '__main__':
