@@ -12,6 +12,7 @@ import os
 # Parallelization parameters
 CPU_COUNT = os.cpu_count()
 CHUNK_SIZE = 32
+CUT_OFF = 1.4
 
 
 def dist(xs, ys):
@@ -27,11 +28,13 @@ def task(by_word, job_data):
     for (j, (w1, weights1)) in by_word:
         if w0 == w1:
             continue
-        links.append({
-            'source': i,
-            'target': j,
-            'weight': dist(weights0, weights1),
-            })
+        d = dist(weights0, weights1)
+        if d < CUT_OFF:
+            links.append({
+                'source': i,
+                'target': j,
+                'weight': d,
+                })
     return links
 
 
