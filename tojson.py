@@ -22,13 +22,11 @@ get_weight = operator.itemgetter(2)
 
 
 def task(by_word, job_data):
-    (i, (w0, rows0)) = job_data
+    (i, (w0, weights0)) = job_data
     links = []
-    for (j, (w1, rows1)) in by_word:
+    for (j, (w1, weights1)) in by_word:
         if w0 == w1:
             continue
-        weights0 = (get_weight(w) for w in rows0)
-        weights1 = (get_weight(w) for w in rows1)
         links.append({
             'source': i,
             'target': j,
@@ -65,13 +63,14 @@ def main():
     print('Preparing data')
     rows.sort(key=operator.itemgetter(1))
     by_word = [
-        (w, list(rws))
+        (w, sorted(list(rws), key=operator.itemgetter(0)))
         for (w, rws) in itertools.groupby(rows, operator.itemgetter(1))
         ]
     nodes = [
         {'name': w, 'topic': max(rws, key=operator.itemgetter(2))[0]}
         for (w, rws) in by_word
         ]
+    by_word = [(w, [get_weight(r) for r in rws]) for (w, rws) in by_word]
 
     links = get_links(by_word)
 
