@@ -55,25 +55,42 @@ def get_links(by_word):
     return links
 
 
-def main():
-    print('Reading weights')
-    with open('barth.weights') as f:
-        rows = [
-            (int(t), w, float(n)) for (t, w, n) in csv.reader(f, 'excel-tab')
+def read_weight_file(filename, weight_type=float):
+    with open(filename) as f:
+        return [
+            (int(t), w, weight_type(n))
+            for (t, w, n) in csv.reader(f, 'excel-tab')
             ]
 
-    # sort rows by word
-    print('Preparing data')
+
+def group_by_words(rows):
     rows.sort(key=operator.itemgetter(1))
-    by_word = [
+    return [
         (w, sorted(list(rws), key=operator.itemgetter(0)))
         for (w, rws) in itertools.groupby(rows, operator.itemgetter(1))
         ]
-    nodes = [
+
+
+def make_nodes(by_word):
+    return [
         {'name': w, 'topic': max(rws, key=operator.itemgetter(2))[0]}
         for (w, rws) in by_word
         ]
-    by_word = [(w, [get_weight(r) for r in rws]) for (w, rws) in by_word]
+
+
+def substitute_weight_vectors(by_word):
+    return [(w, [get_weight(r) for r in rws]) for (w, rws) in by_word]
+
+
+def main():
+    print('Reading weights')
+    rows = read_weight_file('barth.weights')
+
+    # sort rows by word
+    print('Preparing data')
+    by_word = group_by_words(rows)
+    nodes = make_nodes(by_word)
+    by_word = substitute_weight_vectors(by_word)
 
     links = get_links(by_word)
 
