@@ -8,7 +8,19 @@ output/
 preface.json
 filename.html
 
-mallet_results/paragraphs/
+mallet_results/
 paragraphs/
+
+weights.json
+
+node_modules/
+
+barth.doc.topics
+barth.keys
+barth.mallet
+barth.model
+barth.state.gz
+barth.weights
+barth.words
 
 .DS_Store
