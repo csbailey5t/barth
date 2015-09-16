@@ -35,7 +35,8 @@ def download_links(url, link_text):
             yield urljoin(page.url, a['href'])
 
 def download_volume(vol_no, url):
-    for (i, url) in enumrate(download_links(url, 'View Text')):
+    i = 0
+    for url in download_links(url, 'View Text'):
         page = requests.get(url)
         soup = BeautifulSoup(page.text)
         head = soup.find('span', {'class': 'head'})
@@ -45,11 +46,12 @@ def download_volume(vol_no, url):
             raise Exception('No <span class=head> found.')
         if (title == "EDITORS' PREFACE"):
             continue
+        i += 1
 
-        number = str(get_paragraph_number(soup))
+        number = get_paragraph_number(soup)
         filename = '{:02}-{:02}-{:02}-{}'.format(
             vol_no,
-            i + 1,
+            i,
             number,
             '_'.join(title.split()).lower(),
             )
