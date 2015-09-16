@@ -1,0 +1,6 @@
+beautifulsoup4==4.3.2
+gnureadline==6.3.3
+ipython==3.2.1
+numpy==1.9.2
+requests==2.7.0
+scipy==0.16.0
