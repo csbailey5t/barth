@@ -8,7 +8,7 @@ import re
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
 def write_paragraph(filename, text, dirname='paragraphs'):
-    completeName = os.path.join(dirname, filename+'.txt')
+    completeName = ''.join(os.path.join(dirname, filename+'.txt').split())
     print('Writing ' + completeName)
     with open(completeName, 'w') as f:
         f.write(text)
