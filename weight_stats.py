@@ -60,7 +60,7 @@ def main():
 
     dists = []
     for links in tojson.get_links(weights):
-        dists += [link['weight'] for link in links]
+        dists += [link['weight'] for link in links if link['weight'] > 0.0]
     report(*do_stats(dists, bins))
 
 

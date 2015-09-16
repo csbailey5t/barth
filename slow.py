@@ -8,7 +8,7 @@ import re
 TOC_URL = "http://solomon.dkbl.alexanderstreet.com/cgi-bin/asp/philo/dkbl/volumes_toc.pl?&church=ON"
 
 def write_paragraph(filename, text, dirname='paragraphs'):
-    completeName = ''.join(os.path.join(dirname, filename+'.txt').split())
+    completeName = os.path.join(dirname, filename+'.txt')
     print('Writing ' + completeName)
     with open(completeName, 'w') as f:
         f.write(text)
@@ -34,8 +34,8 @@ def download_links(url, link_text):
         if link_text in a.get_text():
             yield urljoin(page.url, a['href'])
 
-def download_volume(url):
-    for url in download_links(url, 'View Text'):
+def download_volume(vol_no, url):
+    for (i, url) in enumrate(download_links(url, 'View Text')):
         page = requests.get(url)
         soup = BeautifulSoup(page.text)
         head = soup.find('span', {'class': 'head'})
@@ -46,9 +46,13 @@ def download_volume(url):
         if (title == "EDITORS' PREFACE"):
             continue
 
-        filename = title.replace(' ', '_').lower()
         number = str(get_paragraph_number(soup))
-        filename = number + '.' + filename
+        filename = '{:02}-{:02}-{:02}-{}'.format(
+            vol_no,
+            i + 1,
+            number,
+            '_'.join(title.split()).lower(),
+            )
 
         abstract = '\n'.join(hibold.get_text() for hibold in soup.find_all(class_='hibold'))
         content = head.parent
@@ -63,8 +67,8 @@ def main(url = TOC_URL):
     os.makedirs('paragraphs')
 
     volume_links = list(download_links(url, 'Table of Contents'))
-    for url in volume_links[:-2]:
-        download_volume(url)
+    for (i, url) in enumerate(volume_links[:-2]):
+        download_volume(i+1, url)
 
 
 if __name__ == '__main__':
