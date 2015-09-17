@@ -2,14 +2,12 @@
 
 import csv
 import sys
-import operator
 import os
 import json
-from itertools import groupby
 from numpy import array
-from scipy.cluster.vq import kmeans2, whiten
+from scipy.cluster.vq import kmeans2
 from sklearn.decomposition import PCA
-import pprint
+
 
 def main():
     k, input_file = sys.argv[1:]
@@ -39,7 +37,8 @@ def main():
     pca = PCA(n_components=2)
     positions = pca.fit_transform(topic_vector)
 
-    for data, filename, cluster, xy in zip(data_rows, file_names, label, positions):
+    for data, filename, cluster, xy in zip(data_rows, file_names,
+                                           label, positions):
         data['filename'] = filename
         data['cluster'] = int(cluster)
         data['xy'] = xy.tolist()

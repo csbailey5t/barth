@@ -20,6 +20,9 @@ def dist(xs, ys):
 
 
 get_weight = operator.itemgetter(2)
+first = operator.itemgetter(0)
+second = operator.itemgetter(1)
+third = operator.itemgetter(2)
 
 
 def task(by_word, job_data):
@@ -64,16 +67,16 @@ def read_weight_file(filename, weight_type=float):
 
 
 def group_by_words(rows):
-    rows.sort(key=operator.itemgetter(1))
+    rows.sort(key=second)
     return [
-        (w, sorted(list(rws), key=operator.itemgetter(0)))
-        for (w, rws) in itertools.groupby(rows, operator.itemgetter(1))
+        (w, sorted(list(rws), key=first))
+        for (w, rws) in itertools.groupby(rows, second)
         ]
 
 
 def make_nodes(by_word):
     return [
-        {'name': w, 'topic': max(rws, key=operator.itemgetter(2))[0]}
+        {'name': w, 'topic': max(rws, key=third)[0]}
         for (w, rws) in by_word
         ]
 
