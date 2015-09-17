@@ -25,7 +25,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("mallet_results/barth_composition.txt", function(error, data) {
+d3.csv("barth.csv", function(error, data) {
   if (error) throw error;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key.startsWith('topic-'); }));
