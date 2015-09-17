@@ -13,7 +13,6 @@ var sparkline = function(g, sparkHeight, width, row) {
     var bars = g.selectAll(".bar")
             .data(topics);
 
-
     x.domain(d3.keys(row).filter(
         function(key) { return key.startsWith('topic-'); }
     ));

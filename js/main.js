@@ -1,4 +1,4 @@
-var margin = {top: 20, right: 100, bottom: 300, left: 40},
+var margin = {top: 20, right: 40, bottom: 20, left: 40},
     width = 1780 - margin.left - margin.right,
     height = 1200 - margin.top - margin.bottom;
 
@@ -43,23 +43,25 @@ d3.csv("barth.csv", function(error, data) {
   });
   x.domain(data.map(getFilename));
 
-  svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll('text')
-        .style('text-anchor', 'end')
-        .attr('transform', 'rotate(-45)');
+  // svg.append("g")
+  //       .attr("class", "x axis")
+  //       .attr("transform", "translate(0," + height + ")")
+  //       .call(xAxis)
+  //       .selectAll('text')
+  //       .style('text-anchor', 'end')
+  //       .attr('transform', 'rotate(-45)');
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
+    // svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(yAxis);
 
     var topic = svg.selectAll(".topic")
             .data(data)
           .enter().append("g")
             .attr("class", "topic")
-            .attr("transform", function(d) { return "translate(" + x(getFilename(d)) + ",0)"; });
+            .attr("transform", function(d) {
+                return "translate(" + x(getFilename(d)) + ",0)";
+            });
 
     topic.selectAll("rect")
         .data(function(d) { return d.percentages; })
@@ -69,19 +71,19 @@ d3.csv("barth.csv", function(error, data) {
         .attr("height", function(d) { return y(d.y0) - y(d.y1); })
         .style("fill", function(d) { return color(d.name); });
 
-    var legend = svg.select(".topic:last-child").selectAll(".legend")
-          .data(function(d) { return d.percentages; })
-        .enter().append("g")
-          .attr("class", "legend")
-          .attr("transform", function(d) { return "translate(" + x.rangeBand() / 2 + "," + y((d.y0 + d.y1) / 2) + ")"; });
+    // var legend = svg.select(".topic:last-child").selectAll(".legend")
+    //      .data(function(d) { return d.percentages; })
+    //    .enter().append("g")
+    //      .attr("class", "legend")
+    //      .attr("transform", function(d) { return "translate(" + x.rangeBand() / 2 + "," + y((d.y0 + d.y1) / 2) + ")"; });
 
-      legend.append("line")
-          .attr("x2", 10);
+    //  legend.append("line")
+    //      .attr("x2", 10);
 
 
-      legend.append("text")
-          .attr("x", 13)
-          .attr("dy", ".35em")
-          .text(function(d) { return d.name; });
+    //  legend.append("text")
+    //      .attr("x", 13)
+    //      .attr("dy", ".35em")
+    //      .text(function(d) { return d.name; });
 
   });
