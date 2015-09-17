@@ -2,7 +2,7 @@
 
 
 """\
-usage: doc_topics_csv.py < INPUT > OUTPUT
+usage: doc_topics_csv.py TOPIC_COUNT < INPUT > OUTPUT
 """
 
 
@@ -35,7 +35,14 @@ def line2row(line):
 
 
 def main():
-    csv.writer(sys.stdout).writerows(
+    topic_count = int(sys.argv[1])
+    header = ['n', 'file'] + [
+        'topic-{}'.format(n+1) for n in range(topic_count)
+    ]
+
+    writer = csv.writer(sys.stdout)
+    writer.writerow(header)
+    writer.writerows(
         line2row(line) for line in sys.stdin
     )
 
