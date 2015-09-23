@@ -146,6 +146,9 @@ def main():
     print('log likelihood between identical corpora = {}'.format(logl1))
     print('log likelihood against a random distrbution = {}'.format(logl2))
 
+    # TODO: Do log likelihood over single token frequencies or groups
+    # of token frequencies.
+
 
 if __name__ == '__main__':
     main()
