@@ -46,7 +46,7 @@ def tokenize_corpus(corpus_dir):
         for fn in files:
             full_fn = os.path.join(root, fn)
             with open(full_fn) as fin:
-                yield (full_fn, nltk.word_tokenize(fin.read()))
+                yield (full_fn, nltk.wordpunct_tokenize(fin.read()))
 
 
 def get_location(filename):
