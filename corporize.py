@@ -44,15 +44,15 @@ def save_token_list(basename, dictionary):
     output = basename + '.tokens'
     print('saving token list to {}.'.format(output))
     with open(output, 'w') as f:
-        pairs = dictionary.items()
+        pairs = list(dictionary.items())
         pairs.sort(key=operator.itemgetter(0))
         f.writelines('{}\t{}\n'.format(*pair) for pair in pairs)
 
 
 def save_mm(basename, mm):
     output = basename + '.mm'
-    print('saving MM to {}.'.format(mm))
-    gensim.corpora.MmCorpus.serialize(output)
+    print('saving MM to {}.'.format(output))
+    gensim.corpora.MmCorpus.serialize(output, mm)
 
 
 def over_tokens(corpus, f):
