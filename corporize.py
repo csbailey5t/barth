@@ -122,17 +122,21 @@ def main():
     corpus = list(tokenize_corpus(args.corpus_dir))
 
     if args.fold_case:
+        print('folding case...')
         map_tokens(corpus, lambda t: t.lower())
 
     if args.stop_list is not None:
+        print('filtering stop list...')
         with open(args.stop_list) as f:
             stop_words = set(tokenize(f.read()))
         filter_tokens(corpus, lambda t: t not in stop_words)
 
     if args.min_word_len is not None:
+        print('filtering by length...')
         filter_tokens(corpus, lambda t: len(t) >= args.min_word_len)
 
     if args.stem:
+        print('stemming...')
         stemmer = nltk.stem.snowball.SnowballStemmer('english')
         map_tokens(corpus, stemmer.stem)
 
@@ -140,6 +144,7 @@ def main():
 
     over_tokens(corpus, calculate_frequencies)
     if args.min_word_freq is not None:
+        print('filtering by token')
         over_tokens(
             corpus,
             lambda freqs: dict(
@@ -150,6 +155,7 @@ def main():
         )
 
     corpus.sort(key=operator.itemgetter(0))
+    print('creating the dictionary...')
     dictionary = gensim.corpora.dictionary.Dictionary(
         [tokens for (_, tokens) in corpus]
     )
