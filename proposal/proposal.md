@@ -2,7 +2,7 @@ Karl Barth's *Church Dogmatics* is widely considered to be one of the most influ
 
 This paper engages the question of the significance of the doctrine of election, as elaborated in paragraphs 32 through 36, to the whole of the *Church Dogmatics* through algorithmic approaches. It suggests that if a portion of a corpora strongly determines the rest of the corpora after its appearance, there will be textual traces, such as changes in word frequencies and common semantic groupings, that can be detected through computational analysis. It approaches the corpora, consisting of the entire *Church Dogmatics*, including prefaces and forewords written by Barth as well as his unfinished fragments that have been published as the final volume of the *Dogmatics*, first through topic modeling. According to David Blei, topic modelling can uncover a hidden thematic structure in texts. (Blei, Probabilist Topic Models, Communications of the ACM) Producing topic models at different levels of granularity, with the corpora as a whole and broken up around the section explicitly on election, we examine the presence and absence of election as a theme.
 
-Our topic models not only provide data for interpretation, but also supply a vocabulary for focusing further computational analysis. Based on words we determined to be distinctive to the theme of election, we examine overall frequency of key terms across the whole corpora, tracking the rise and fall of language specific to election. We also use term frequency-inverse document frequency (tf-idf) to examine which terms are particularly characteristic of individual paragraphs, paying attention to words typically associated with election. 
+Our topic models not only provide data for interpretation, but also supply a vocabulary for focusing further computational analysis. Based on words we determined to be distinctive to the theme of election, we examine overall frequency of key terms across the whole corpora, tracking the rise and fall of language specific to election. We also use term frequency-inverse document frequency (tf-idf) to examine which terms are particularly characteristic of individual paragraphs, paying attention to words typically associated with election.
 
 
 ...At the same time, this paper asks whether some styles of writing, such as that of Barth, which notoriously circles around and repetitively approaches topics from different angles, prove resistant to current algorithmic approaches in textual analysis.
@@ -14,6 +14,37 @@ include at some point that we each paragraph is a document in the topic models
 
 
 Use "we", "this paper", "this project"...?
+
+
+
+Balthasar, Hans Urs von, *The Theology of Karl Barth: Exposition and Interpretation*, trans. Edward T. Oakes (San Francisco: Ignatius, 1992).
+
+Barth, Karl, *Church Dogmatics*, 13 part volumes, ed. G.W. Bromiley and T.F. Torrance (Edinburgh: T&T Clark, 1969-80).
+
+Blei, David M., 'Probabilistic Topic Models', *Communications of the ACM* 55/4 (2012), pp. 77-84.
+
+Hunsinger, George, *Disruptive Grace: Studies in the Theology of Karl Barth* (Grand Rapids: Eerdmans, 2000).
+
+Hunsinger, George, 'Election and the Trinity: Twenty-Five Theses on the Theology of Karl Barth', *Modern Theology* 24/2 (2008), pp. 179-98.
+
+Jones, Paul, *The Humanity of Christ: Christology in Karl Barth's Church Dogmatics* (London: T&T Clark, 2011).
+
+Jüngel, Eberhard, *God's Being is in Becoming: The Trinitarian Being of God in the Theology of Karl Barth. A Paraphrase"*, trans. John Webster (Edinburg: T&T Clark, 2001).
+
+McCormack, Bruce, 'Election and the Trinity: Theses in response to George Hunsinger', *Scottish Journal of Theology* 63/2 (2010), pp. 203-224.
+
+McCormack, Bruce, 'Grace and Being: The Role of God's Gracious Election in Karl Barth's Theological Ontology', in John Webster (ed.), *The Cambridge Companion to Karl Barth* (Cambridge: Cambridge University Press, 2000), pp. 92-110.
+
+McCormack, Bruce, *Karl Barth's Critically Realistic Dialectical Theology. Its Gensis and Development, 1909-1936* (Oxford: Clarendon Press, 1995).
+
+Molnar, Paul D., *Divine Freedom and the Doctrine of the Immanent Trinity: In Dialogue with Karl Barth and Contemporary Theology* (London: T&T Clark, 2002).
+
+Molnar, Paul. D., 'The Trinity, Election, and God's Ontological Freedom: A Response to Kevin W. Hector', *International Journal of Systematic Theology* 8/3 (2006), pp. 294-306.
+
+Webster, John, *Barth* (London: Continuum, 2nd edn, 2004).
+
+
+
 
 
 
