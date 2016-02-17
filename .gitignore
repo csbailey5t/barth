@@ -9,8 +9,7 @@ output/
 preface.json
 filename.html
 
-mallet_*/
-mallet-*/
+models/
 paragraphs/
 paragraphs_before_election/
 paragraphs_after_election/

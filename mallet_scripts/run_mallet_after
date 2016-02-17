@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+KEY=barth2
+INPUT=texts/paragraphs_after_election/
+
+/Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output models/mallet-after/$KEY.mallet --keep-sequence --remove-stopwords
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-after/$KEY.mallet --num-topics 30 --optimize-interval 20 --num-iterations 2000 \
+	--output-model models/mallet-after/$KEY.model --output-state models/mallet-after/$KEY.state.gz --output-doc-topics models/mallet-after/$KEY.doc.topics \
+	--output-topic-keys models/mallet-after/$KEY.keys \
+  --topic-word-weights-file models/mallet-after/$KEY.weights --word-topic-counts-file models/mallet-after/$KEY.words
