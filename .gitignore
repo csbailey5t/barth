@@ -3,24 +3,27 @@ lib/
 pip-selfcheck.json
 pyvenv.cfg
 share/
+__pycache__/
 
 output/
 preface.json
 filename.html
 
-mallet_results/
+mallet_*/
+mallet-*/
 paragraphs/
+paragraphs_before_election/
+paragraphs_after_election/
+paragraphs_election_only/
+paragraphs_without_election/
 
+# the following data files should probably be checked in at some point
 weights.json
+barth_composition.csv
+barth.composition.csv
+election_topic.csv
+frequencies.csv
 
 node_modules/
-
-barth.doc.topics
-barth.keys
-barth.mallet
-barth.model
-barth.state.gz
-barth.weights
-barth.words
 
 .DS_Store
