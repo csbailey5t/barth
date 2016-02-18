@@ -25,7 +25,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("barth.csv", function(error, data) {
+d3.csv("barth_composition.csv", function(error, data) {
   if (error) throw error;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key.startsWith('topic-'); }));
@@ -43,17 +43,17 @@ d3.csv("barth.csv", function(error, data) {
   });
   x.domain(data.map(getFilename));
 
-  // svg.append("g")
-  //       .attr("class", "x axis")
-  //       .attr("transform", "translate(0," + height + ")")
-  //       .call(xAxis)
-  //       .selectAll('text')
-  //       .style('text-anchor', 'end')
-  //       .attr('transform', 'rotate(-45)');
+  svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll('text')
+        .style('text-anchor', 'end')
+        .attr('transform', 'rotate(-45)');
 
-    // svg.append("g")
-    //     .attr("class", "y axis")
-    //     .call(yAxis);
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
     var topic = svg.selectAll(".topic")
             .data(data)
@@ -71,19 +71,42 @@ d3.csv("barth.csv", function(error, data) {
         .attr("height", function(d) { return y(d.y0) - y(d.y1); })
         .style("fill", function(d) { return color(d.name); });
 
-    // var legend = svg.select(".topic:last-child").selectAll(".legend")
-    //      .data(function(d) { return d.percentages; })
-    //    .enter().append("g")
-    //      .attr("class", "legend")
-    //      .attr("transform", function(d) { return "translate(" + x.rangeBand() / 2 + "," + y((d.y0 + d.y1) / 2) + ")"; });
+    var legend = svg.select(".topic:last-child").selectAll(".legend")
+         .data(function(d) { return d.percentages; })
+       .enter().append("g")
+         .attr("class", "legend")
+         .attr("transform", function(d) { return "translate(" + x.rangeBand() / 2 + "," + y((d.y0 + d.y1) / 2) + ")"; });
 
-    //  legend.append("line")
-    //      .attr("x2", 10);
+     legend.append("line")
+         .attr("x2", 10);
 
-
-    //  legend.append("text")
-    //      .attr("x", 13)
-    //      .attr("dy", ".35em")
-    //      .text(function(d) { return d.name; });
+     legend.append("text")
+         .attr("x", 13)
+         .attr("dy", ".35em")
+         .text(function(d) { return d.name; });
 
   });
+
+  function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}

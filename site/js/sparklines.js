@@ -36,7 +36,8 @@ var getFilename = function(d) {
     return d.file.split('/').pop();
 };
 
-d3.csv("barth.csv", function(error, data) {
+// Is this the right file? I think this one came from Eric...was originally barth.csv
+d3.csv("barth_composition.csv", function(error, data) {
     var height = (data.length * sparkHeight) + margin.top + margin.bottom;
 
     var color = d3.scale.category20c();
