@@ -87,7 +87,7 @@ def substitute_weight_vectors(by_word):
 
 def main():
     print('Reading weights')
-    rows = read_weight_file('barth.weights')
+    rows = read_weight_file('models/mallet_results_original/barth.weights')
 
     # sort rows by word
     print('Preparing data')
