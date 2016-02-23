@@ -14,6 +14,9 @@ import sys
 
 import nltk
 import nltk.corpus
+from nltk.corpus import brown, names, stopwords
+from nltk.probability import ConditionalFreqDist
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 CORPUS = [
@@ -21,6 +24,7 @@ CORPUS = [
     'texts/paragraphs_after_election',
     ]
 TEST_SET_RATIO = 0.2
+TAGGER_CACHE = '.tagger.pickle'
 
 
 first = operator.itemgetter(0)
@@ -119,20 +123,93 @@ def report_classifier(cls, accuracy, training, test, featureset, outdir):
     return (output, accuracy, baseline)
 
 
-def read_corpus_features(directories):
+tokenize = nltk.wordpunct_tokenize
+
+
+def tokenize_corpus(corpus_dir):
+    """This tokenism all the files in a directory, returning a dict
+    from filename to tokens."""
+    print('walking {}'.format(corpus_dir))
+    for (root, dirs, files) in os.walk(corpus_dir):
+        for fn in files:
+            full_fn = os.path.join(root, fn)
+            with open(full_fn) as fin:
+                yield (full_fn, tokenize(fin.read()))
+
+
+def build_tagger(tagged_sents=None, default_tag='DEFAULT'):
+    """This builds a tagger from a corpus."""
+    if os.path.exists(TAGGER_CACHE):
+        with open(TAGGER_CACHE, 'rb') as f:
+            tagger = pickle.load(f)
+    else:
+        if tagged_sents is None:
+            tagged_sents = brown.tagged_sents()
+
+        name_tagger = [
+            nltk.DefaultTagger('PN').tag([
+                name.lower() for name in names.words()
+            ])
+        ]
+        patterns = [
+            (r'.*ing$', 'VBG'),               # gerunds
+            (r'.*ed$', 'VBD'),                # simple past
+            (r'.*es$', 'VBZ'),                # 3rd singular present
+            (r'.*ould$', 'MD'),               # modals
+            (r'.*\'s$', 'NN$'),               # possessive nouns
+            (r'.*s$', 'NNS'),                 # plural nouns
+            (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),  # cardinal numbers
+            (r'.*ly$', 'RB'),                       # adverbs
+            # comment out the following line to raise to the surface all
+            # the words being tagged by this last, default tag when you
+            # run debug.py.
+            (r'.*', 'NN')                     # nouns (default)
+        ]
+
+        # Right now, nothing will get to the default tagger, because the
+        # regex taggers last pattern essentially acts as a default tagger,
+        # tagging everything as NN.
+        tagger0 = nltk.DefaultTagger(default_tag)
+        regexp_tagger = nltk.RegexpTagger(patterns, backoff=tagger0)
+        tagger1 = nltk.UnigramTagger(tagged_sents, backoff=regexp_tagger)
+        tagger2 = nltk.BigramTagger(tagged_sents, backoff=tagger1)
+        tagger3 = nltk.UnigramTagger(name_tagger, backoff=tagger2)
+
+        tagger = tagger3
+        with open(TAGGER_CACHE, 'wb') as f:
+            pickle.dump(tagger, f, pickle.HIGHEST_PROTOCOL)
+
+    return tagger
+
+
+def read_corpus_features(directories, stopset=None):
     """This reads a list of directories and pulls the features from its
     documents. The tag for each document is its immediate directory's
     name."""
+    tagger = build_tagger()
+    corpus = TfidfVectorizer(
+        input='filename',
+        tokenizer=lambda text: tokenizer(tagger, text, stopset),
+    )
+    files = []
+
     for dirname in directories:
-        dirname = os.path.abspath(dirname)
-        (_, tag) = os.path.split(dirname)
-        for (root, _, files) in os.walk(dirname):
-            for fn in files:
-                full_fn = os.path.join(root, fn)
-                # TODO: tokenize the file
-                # TODO: POS tagging?
-                # TODO: stopwords
-                # TODO: featureset (dict between tokens/tags => existence or frequency)
+        for (root, _, file_list) in os.walk(dirname):
+            files += [os.path.join(root, fn) for fn in file_list]
+
+    return corpus.fit_transform(files)
+    # TODO: subdivide corpus by category?
+    # TODO: how to feed to http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html#sklearn.naive_bayes.GaussianNB
+
+
+def tokenizer(tagger, text, stopset):
+    tokens = tokenize(text)
+    tags = tagger.tag(tokens)
+    tags = [tag for tag in tags if tag[0].isalnum()]
+    if stopset is not None:
+        tags = [tag for tag in tags if tag[0].lower() not in stopset]
+    tags = ['%s/%s' % tag for tag in tags]
+    return tags
 
 
 def parse_args(argv=None):
@@ -141,6 +218,7 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
 
     parser.add_argument('-c', '--corpus', dest='corpus', action='append',
+                        default=CORPUS,
                         help='The input directory containing the training '
                              'corpus.')
     parser.add_argument('-r', '--ratio', dest='ratio', type=float,
@@ -159,7 +237,9 @@ def main():
     """The main function."""
     args = parse_args()
 
-    featuresets = read_corpus_features(args.corpu)
+    stopset = set(stopwords.words('english'))
+    featuresets = read_corpus_features(args.corpus, stopset)
+    return
     random.shuffle(featuresets)
     test_set, training_set = get_sets(featuresets, args.ratio)
 
