@@ -4,4 +4,5 @@ Tasks:
   ☐ Determine other stands to detect influence of election section, especially focusing on trinity, time, and ontology
   ☐ Create coherent site to display results
   ☐ Fix/add labeling for d3 visualizations
-  ☐ Decide whether to check in models 
+  ☐ Decide whether to check in models
+  ☐ Train a classifier to determine the likelihood that a chunk (maybe 500 words) would be from before or after the election sections
