@@ -15,8 +15,11 @@ import sys
 import nltk
 import nltk.corpus
 from nltk.corpus import brown, names, stopwords
-from nltk.probability import ConditionalFreqDist
+# from nltk.probability import ConditionalFreqDist
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn import cross_validation as xv
+from sklearn import naive_bayes as nb
+import numpy as np
 
 
 CORPUS = [
@@ -187,19 +190,77 @@ def read_corpus_features(directories, stopset=None):
     documents. The tag for each document is its immediate directory's
     name."""
     tagger = build_tagger()
-    corpus = TfidfVectorizer(
-        input='filename',
-        tokenizer=lambda text: tokenizer(tagger, text, stopset),
-    )
     files = []
 
     for dirname in directories:
         for (root, _, file_list) in os.walk(dirname):
             files += [os.path.join(root, fn) for fn in file_list]
 
-    return corpus.fit_transform(files)
-    # TODO: subdivide corpus by category?
-    # TODO: how to feed to http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html#sklearn.naive_bayes.GaussianNB
+    corpus = TfidfCorpus(files, lambda text: tokenizer(tagger, text, stopset))
+    return corpus
+
+
+class TfidfCorpus:
+
+    def __init__(self, files, tokenizer=None):
+        self.files = files
+        self.targets = None
+        self.target_key = None
+        self.tfidf = None
+        self.__dense = None
+
+        self.categorize()
+        self.read_corpus(tokenizer)
+
+    def __repr__(self):
+        return "<TfidfCorpus {}>".format(self.tfidf.getnnz())
+
+    def categorize(self):
+        """Identify the documents' categories based on the directory structure.
+        """
+        target_key = {}
+        targets = []
+        for filename in self.files:
+            target = os.path.basename(os.path.dirname(filename))
+            index = target_key.setdefault(target, len(target_key) + 1)
+            targets.append(index)
+        self.targets = np.array(targets)
+        self.target_key = target_key
+
+    def read_corpus(self, tokenizer=None):
+        """Tokenize the corpus documents and run TF*IDF on them."""
+        vectorizer = TfidfVectorizer(
+            input='filename',
+            tokenizer=tokenizer,
+        )
+        self.tfidf = vectorizer.fit_transform(self.files)
+
+    @property
+    def dense(self):
+        if self.__dense is None:
+            self.__dense = self.tfidf.todense()
+        return self.__dense
+
+    def cross_validate(self, classifier, k=10, verbose=0):
+        """Run k-fold cross validation on the data in this corpus."""
+        return xv.cross_val_score(
+            classifier, self.dense, self.targets, cv=k, verbose=verbose
+        )
+
+    def fit(self, classifier, X=None, y=None):
+        """Train a classifier on this corpus or other data."""
+        X = X or self.dense
+        y = y or self.targets
+        classifier.fit(X, y)
+
+    def predict(self, classifier, i):
+        """Predict for the ith sample in this corpus."""
+        return self.predict_all(classifier, self.dense[i:i+1])[0]
+
+    def predict_all(self, classifier, X=None):
+        """Predict based on all inputs, which default to this corpus."""
+        X = X or self.dense
+        return classifier.predict(X)
 
 
 def tokenizer(tagger, text, stopset):
@@ -238,7 +299,18 @@ def main():
     args = parse_args()
 
     stopset = set(stopwords.words('english'))
-    featuresets = read_corpus_features(args.corpus, stopset)
+    corpus = read_corpus_features(args.corpus, stopset)
+    gaussian = nb.GaussianNB()
+    scores = corpus.cross_validate(gaussian, verbose=10)
+    print(scores)
+    print(scores.mean())
+
+    # TODO: clean up functions (and the rest of this function) that we're not
+    # using.
+    # TODO: try different classifiers (different bayes, SVM, max ent)
+    # TODO: figure out the baseline
+    # TODO: score the election section itself
+    # TODO: look at vocabulary and limit the features used
     return
     random.shuffle(featuresets)
     test_set, training_set = get_sets(featuresets, args.ratio)
