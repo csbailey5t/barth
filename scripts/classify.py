@@ -2,6 +2,7 @@
 
 
 import argparse
+from collections import Counter
 import csv
 import itertools
 from multiprocessing.pool import Pool
@@ -300,15 +301,23 @@ def main():
 
     stopset = set(stopwords.words('english'))
     corpus = read_corpus_features(args.corpus, stopset)
+
     gaussian = nb.GaussianNB()
     scores = corpus.cross_validate(gaussian, verbose=10)
     print(scores)
     print(scores.mean())
 
+    target_index = dict(
+        (t_key, t) for (t, t_key) in corpus.target_key.items()
+    )
+    target_counts = Counter(target_index[t_key] for t_key in corpus.targets)
+    total_targets = len(corpus.targets)
+    for (target, count) in target_counts.most_common():
+        print('{:12}\t{}\t{}'.format(target, count, count / total_targets))
+
     # TODO: clean up functions (and the rest of this function) that we're not
     # using.
     # TODO: try different classifiers (different bayes, SVM, max ent)
-    # TODO: figure out the baseline
     # TODO: score the election section itself
     # TODO: look at vocabulary and limit the features used
     return
