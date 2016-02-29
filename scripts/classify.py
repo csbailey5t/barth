@@ -17,8 +17,10 @@ import nltk
 import nltk.corpus
 from nltk.corpus import brown, names, stopwords
 # from nltk.probability import ConditionalFreqDist
+from sklearn.base import clone
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import cross_validation as xv
+from sklearn.metrics import confusion_matrix
 from sklearn import naive_bayes as nb
 import numpy as np
 
@@ -222,6 +224,7 @@ class TfidfCorpus:
         target_key = {}
         targets = []
         for filename in self.files:
+
             target = os.path.basename(os.path.dirname(filename))
             index = target_key.setdefault(target, len(target_key) + 1)
             targets.append(index)
@@ -248,10 +251,32 @@ class TfidfCorpus:
             classifier, self.dense, self.targets, cv=k, verbose=verbose
         )
 
+    def confused_x_validate(self, classifier, k=10):
+        """\
+        Run k-fold cross validation and return the scores and confusion
+        matrixes."""
+        X = self.dense
+        y = self.targets
+        kf = xv.KFold(len(y), n_folds=k)
+        for (train_index, test_index) in kf:
+            X_train, X_test = X[train_index], X[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+            print('training size = {} ; test size = {}'.format(
+                len(X_train), len(X_test),
+            ))
+            classifier2 = clone(classifier)
+            self.fit(classifier2, X_train, y_train)
+            predict = self.predict_all(classifier2, X_test)
+            c_matrix = confusion_matrix(y_test, predict)
+            yield {
+                'classifier': classifier2,
+                'confusion_matrix': c_matrix,
+            }
+
     def fit(self, classifier, X=None, y=None):
         """Train a classifier on this corpus or other data."""
-        X = X or self.dense
-        y = y or self.targets
+        X = X if X is not None else self.dense
+        y = y if y is not None else self.targets
         classifier.fit(X, y)
 
     def predict(self, classifier, i):
@@ -260,7 +285,7 @@ class TfidfCorpus:
 
     def predict_all(self, classifier, X=None):
         """Predict based on all inputs, which default to this corpus."""
-        X = X or self.dense
+        X = X if X is not None else self.dense
         return classifier.predict(X)
 
 
@@ -306,6 +331,9 @@ def main():
     scores = corpus.cross_validate(gaussian, verbose=10)
     print(scores)
     print(scores.mean())
+    for c_data in corpus.confused_x_validate(gaussian):
+        c_matrix = c_data['confusion_matrix']
+        print(c_matrix)
 
     target_index = dict(
         (t_key, t) for (t, t_key) in corpus.target_key.items()
@@ -319,7 +347,7 @@ def main():
     # using.
     # TODO: try different classifiers (different bayes, SVM, max ent)
     # TODO: score the election section itself
-    # TODO: look at vocabulary and limit the features used
+    ## TODO: look at vocabulary and limit the features used
     return
     random.shuffle(featuresets)
     test_set, training_set = get_sets(featuresets, args.ratio)
