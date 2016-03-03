@@ -9,6 +9,8 @@ output/
 preface.json
 filename.html
 
+.tagger.pickle
+
 models/
 paragraphs/
 paragraphs_before_election/
