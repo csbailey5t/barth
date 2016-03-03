@@ -63,5 +63,6 @@ electionDf = read_corpus(['texts/paragraphs_election_only'])
 
 frames = [beforeDf, electionDf, afterDf]
 
-result = pd.concat(frames, axis=1)
-print(type(result))
+combinedFrames = pd.concat(frames, axis=1)
+
+combinedFrames.to_csv('tfidf.csv')
