@@ -34,7 +34,7 @@ tfs = tfidf.fit_transform(all_files)
 print('minimum={}'.format(tfs.min()))
 print('maximum={}'.format(tfs.max()))
 
-with open('freqencies.csv', 'w') as f:
+with open('frequencies.csv', 'w') as f:
     writer = csv.writer(f)
     writer.writerow([None] + tfidf.get_feature_names())
     for i, file in enumerate(all_files):
