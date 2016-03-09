@@ -24,6 +24,9 @@ from sklearn.metrics import confusion_matrix
 from sklearn import naive_bayes as nb
 import numpy as np
 
+from barth.corpus import get_english_stopset, Corpus
+from barth.tagging import build_tagger
+
 
 CORPUS = [
     'texts/paragraphs_before_election',
@@ -136,70 +139,21 @@ def tokenize_corpus(corpus_dir):
     """This tokenism all the files in a directory, returning a dict
     from filename to tokens."""
     print('walking {}'.format(corpus_dir))
-    for (root, dirs, files) in os.walk(corpus_dir):
-        for fn in files:
-            full_fn = os.path.join(root, fn)
-            with open(full_fn) as fin:
-                yield (full_fn, tokenize(fin.read()))
-
-
-def build_tagger(tagged_sents=None, default_tag='DEFAULT'):
-    """This builds a tagger from a corpus."""
-    if os.path.exists(TAGGER_CACHE):
-        with open(TAGGER_CACHE, 'rb') as f:
-            tagger = pickle.load(f)
-    else:
-        if tagged_sents is None:
-            tagged_sents = brown.tagged_sents()
-
-        name_tagger = [
-            nltk.DefaultTagger('PN').tag([
-                name.lower() for name in names.words()
-            ])
-        ]
-        patterns = [
-            (r'.*ing$', 'VBG'),               # gerunds
-            (r'.*ed$', 'VBD'),                # simple past
-            (r'.*es$', 'VBZ'),                # 3rd singular present
-            (r'.*ould$', 'MD'),               # modals
-            (r'.*\'s$', 'NN$'),               # possessive nouns
-            (r'.*s$', 'NNS'),                 # plural nouns
-            (r'^-?[0-9]+(.[0-9]+)?$', 'CD'),  # cardinal numbers
-            (r'.*ly$', 'RB'),                       # adverbs
-            # comment out the following line to raise to the surface all
-            # the words being tagged by this last, default tag when you
-            # run debug.py.
-            (r'.*', 'NN')                     # nouns (default)
-        ]
-
-        # Right now, nothing will get to the default tagger, because the
-        # regex taggers last pattern essentially acts as a default tagger,
-        # tagging everything as NN.
-        tagger0 = nltk.DefaultTagger(default_tag)
-        regexp_tagger = nltk.RegexpTagger(patterns, backoff=tagger0)
-        tagger1 = nltk.UnigramTagger(tagged_sents, backoff=regexp_tagger)
-        tagger2 = nltk.BigramTagger(tagged_sents, backoff=tagger1)
-        tagger3 = nltk.UnigramTagger(name_tagger, backoff=tagger2)
-
-        tagger = tagger3
-        with open(TAGGER_CACHE, 'wb') as f:
-            pickle.dump(tagger, f, pickle.HIGHEST_PROTOCOL)
-
-    return tagger
+    corpus = Corpus([corpus_dir])
+    return corpus.tokenize_corpus()
 
 
 def read_corpus_features(directories, stopset=None):
     """This reads a list of directories and pulls the features from its
     documents. The tag for each document is its immediate directory's
     name."""
-    tagger = build_tagger()
-    files = []
-
-    for dirname in directories:
-        for (root, _, file_list) in os.walk(dirname):
-            files += [os.path.join(root, fn) for fn in file_list]
-
-    corpus = TfidfCorpus(files, lambda text: tokenizer(tagger, text, stopset))
+    corpus_tokenizer = Corpus(
+        directories, tagger=build_tagger(), stopset=stopset,
+    )
+    corpus = TfidfCorpus(
+        list(corpus_tokenizer.walk_corpus()),
+        corpus_tokenizer.tokenize,
+    )
     return corpus
 
 
@@ -290,13 +244,11 @@ class TfidfCorpus:
 
 
 def tokenizer(tagger, text, stopset):
-    tokens = tokenize(text)
-    tags = tagger.tag(tokens)
-    tags = [tag for tag in tags if tag[0].isalnum()]
-    if stopset is not None:
-        tags = [tag for tag in tags if tag[0].lower() not in stopset]
-    tags = ['%s/%s' % tag for tag in tags]
-    return tags
+    corpus = Corpus([], tagger, stopset)
+    tokens = corpus.tokenize(text)
+    if tagger is not None:
+        tokens = ['%s/%s' % tag for tag in tokens]
+    return tokens
 
 
 def parse_args(argv=None):
@@ -324,7 +276,7 @@ def main():
     """The main function."""
     args = parse_args()
 
-    stopset = set(stopwords.words('english'))
+    stopset = get_english_stopset()
     corpus = read_corpus_features(args.corpus, stopset)
 
     gaussian = nb.GaussianNB()
