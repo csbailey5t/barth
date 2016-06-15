@@ -25,9 +25,13 @@ from sklearn import naive_bayes as nb
 import numpy as np
 
 
+# CORPUS = [
+#     'texts/paragraphs_before_election',
+#     'texts/paragraphs_after_election',
+#     ]
 CORPUS = [
-    'texts/paragraphs_before_election',
-    'texts/paragraphs_after_election',
+    'chunks/pre',
+    'chunks/post',
     ]
 TEST_SET_RATIO = 0.2
 TAGGER_CACHE = '.tagger.pickle'
@@ -236,6 +240,7 @@ class TfidfCorpus:
         vectorizer = TfidfVectorizer(
             input='filename',
             tokenizer=tokenizer,
+            encoding='latin-1'
         )
         self.tfidf = vectorizer.fit_transform(self.files)
 
@@ -327,7 +332,9 @@ def main():
     stopset = set(stopwords.words('english'))
     corpus = read_corpus_features(args.corpus, stopset)
 
-    gaussian = nb.GaussianNB()
+    # gaussian = nb.GaussianNB()
+    gaussian = nb.MultinomialNB()
+    # gaussian = nltk.NaiveBayesClassifier
     scores = corpus.cross_validate(gaussian, verbose=10)
     print(scores)
     print(scores.mean())
@@ -347,7 +354,7 @@ def main():
     # using.
     # TODO: try different classifiers (different bayes, SVM, max ent)
     # TODO: score the election section itself
-    ## TODO: look at vocabulary and limit the features used
+    # TODO: look at vocabulary and limit the features used
     return
     random.shuffle(featuresets)
     test_set, training_set = get_sets(featuresets, args.ratio)
