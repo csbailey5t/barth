@@ -3,7 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('freqencies.csv', index_col=0, encoding='latin-1')
+df = pd.read_csv('frequencies.csv', index_col=0, encoding='latin-1')
 
 elect_words = ['elect', 'electa', 'electi', 'electio',
                'election', 'electionem', 'electioni', 'electo',
@@ -20,7 +20,7 @@ for word in elect_words:
     create_plot(word)
 
 
-# plt.show()
+plt.show()
 
 # elect = df.elect
 # election = df.election

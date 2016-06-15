@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 stemmer = nltk.stem.snowball.SnowballStemmer('english')
 
-path = 'paragraphs'
+path = 'texts/paragraphs'
 
 
 def tokenizer(text):

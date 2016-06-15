@@ -13,7 +13,7 @@ def read_corpus(corpus_dir):
             files += [os.path.join(root, fn) for fn in file_list]
 
 
-    vectorizer = TfidfVectorizer(input='filename', stop_words='english')
+    vectorizer = TfidfVectorizer(input='filename', stop_words='english', ngram_range=(1,3))
     X = vectorizer.fit_transform(files)
     features = vectorizer.get_feature_names()
 
@@ -65,4 +65,6 @@ frames = [beforeDf, electionDf, afterDf]
 
 combinedFrames = pd.concat(frames, axis=1)
 
-combinedFrames.to_csv('tfidf.csv')
+print(combinedFrames)
+
+combinedFrames.to_csv('tfidf_ngram.csv')
