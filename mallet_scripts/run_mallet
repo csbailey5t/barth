@@ -3,10 +3,10 @@
 set -e
 
 KEY=barth
-INPUT=texts/paragraphs/
+INPUT=../texts/paragraphs/
 
-/Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output models/full/$KEY.mallet --keep-sequence --remove-stopwords
-/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/full/$KEY.mallet --num-topics 30 --optimize-interval 20 --num-iterations 2000 \
-	--output-model models/full/$KEY.model --output-state models/full/$KEY.state.gz --output-doc-topics models/full/$KEY.doc.topics \
-	--output-topic-keys models/full/$KEY.keys \
-  --topic-word-weights-file models/full/$KEY.weights --word-topic-counts-file models/full/$KEY.words
+/Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output ../models/full/$KEY.mallet --keep-sequence --remove-stopwords
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input ../models/full/$KEY.mallet --num-topics 20 --optimize-interval 20 --num-iterations 2000 \
+	--output-model ../models/full/$KEY.model --output-state ../models/full/$KEY.state.gz --output-doc-topics ../models/full/$KEY.doc.topics \
+	--output-topic-keys ../models/full/$KEY.keys \
+  --topic-word-weights-file ../models/full/$KEY.weights --word-topic-counts-file ../models/full/$KEY.words
