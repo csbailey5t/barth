@@ -1,5 +1,6 @@
 bin/
 lib/
+include/
 pip-selfcheck.json
 pyvenv.cfg
 share/
@@ -17,6 +18,7 @@ paragraphs_before_election/
 paragraphs_after_election/
 paragraphs_election_only/
 paragraphs_without_election/
+chunks/
 
 # the following data files should probably be checked in at some point
 weights.json
