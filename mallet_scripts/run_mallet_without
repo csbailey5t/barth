@@ -6,7 +6,7 @@ KEY=without
 INPUT=texts/paragraphs_without_election/
 
 /Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output models/mallet-without/$KEY.mallet --keep-sequence --remove-stopwords
-/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-without/$KEY.mallet --num-topics 30 --optimize-interval 20 --num-iterations 2000 \
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-without/$KEY.mallet --num-topics 30 --optimize-interval 10 --num-iterations 2000 \
 	--output-model models/mallet-without/$KEY.model --output-state models/mallet-without/$KEY.state.gz --output-doc-topics models/mallet-without/$KEY.doc.topics \
 	--output-topic-keys models/mallet-without/$KEY.keys \
   --topic-word-weights-file models/mallet-without/$KEY.weights --word-topic-counts-file models/mallet-without/$KEY.words

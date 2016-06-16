@@ -6,7 +6,7 @@ KEY=pre33
 INPUT=texts/paragraphs_before_election/
 
 /Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output models/mallet-before/$KEY.mallet --keep-sequence --remove-stopwords
-/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-before/$KEY.mallet --num-topics 30 --optimize-interval 20 --num-iterations 2000 \
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-before/$KEY.mallet --num-topics 30 --optimize-interval 10 --num-iterations 2000 \
 	--output-model models/mallet-before/$KEY.model --output-state models/mallet-before/$KEY.state.gz --output-doc-topics models/mallet-before/$KEY.doc.topics \
 	--output-topic-keys models/mallet-before/$KEY.keys \
   --topic-word-weights-file models/mallet-before/$KEY.weights --word-topic-counts-file models/mallet-before/$KEY.words

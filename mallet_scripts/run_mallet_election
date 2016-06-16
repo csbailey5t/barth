@@ -6,7 +6,7 @@ KEY=barth_election
 INPUT=texts/paragraphs_election_only/
 
 /Users/csb5t/projects/mallet/bin/mallet import-dir --input $INPUT --output models/mallet-election/$KEY.mallet --keep-sequence --remove-stopwords
-/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-election/$KEY.mallet --num-topics 30 --num-iterations 2000 --optimize-interval 20 \
+/Users/csb5t/projects/mallet/bin/mallet train-topics --input models/mallet-election/$KEY.mallet --num-topics 20 --num-iterations 2000 --optimize-interval 10 \
 	--output-model models/mallet-election/$KEY.model --output-state models/mallet-election/$KEY.state.gz --output-doc-topics models/mallet-election/$KEY.doc.topics \
 	--output-topic-keys models/mallet-election/$KEY.keys \
   --topic-word-weights-file models/mallet-election/$KEY.weights --word-topic-counts-file models/mallet-election/$KEY.words
