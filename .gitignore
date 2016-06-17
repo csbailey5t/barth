@@ -6,11 +6,12 @@ share/
 __pycache__/
 
 output/
-preface.json
-filename.html
+logs/
+data/
 
 .tagger.pickle
 
+text/
 models/
 paragraphs/
 paragraphs_before_election/
