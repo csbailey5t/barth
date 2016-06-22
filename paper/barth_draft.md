@@ -18,9 +18,28 @@ As mentioned at the beginning of this paper, this is an ongoing, fractious debat
 
 Our first approach to the *Dogmatics* is through topic modeling, one of the most popular textual analysis methods. David Blei suggests that topic modeling can “uncover hidden thematic structure” in texts.[^16] Given our particular questions, we approached the corpus in two ways. We ran topic models at various numbers of topics on the *Church Dogmatics* as a whole, gaining insight into the large scale themes that seem to structure the work and how the balance of themes changes throughout the *Dogmatics*. Since our concern is with shifts based on paragraph 33, we also broke the corpus into two large chunks: paragraphs 1 to 32, and paragraphs 34 through 73 plus the fragment that Barth was writing just before his death.[^17] We ran topic models on both chunks, aiming to get a slightly more fine-grained image of the two parts of Barth's work, and determining whether any surfaced topics were constituted in a manner that reflects the doctrine of election as a determinative force. While we paid close attention to the topics that explicitly referenced election or immediately related terms[^18], we were also attentive to topics engaged with Christology, the Trinity, reconciliation, and theological ontology more broadly, given the interconnection of these areas with Barth’s doctrine of election.
 
-At the level of the whole *Dogmatics* we found that running only 20 topics provided a strong and clear image of the textual themes. While running at higher numbers of topics provided more granular thematic focus, close attention to the broader 20 topics was sufficient to gain a sense of the overall scope and movement of the *Dogmatics*. Within the 20 topics, there were topics that could be clearly identified with two different aspects of Barth's doctrine of election, including the ontological aspect of concern here, as well as topics that clearly represented his doctrine of God according to its more classical formulation and his doctrine of reconciliation, considered to be his most mature work.
+At the level of the whole *Dogmatics* we found that running only 20 topics provided a strong and clear image of the textual themes. While running at higher numbers of topics provided more granular thematic focus, close attention to the broader 20 topics was sufficient to gain a sense of the overall scope and movement of the *Dogmatics*. Within the 20 topics, there were topics that could be clearly identified with two different aspects of Barth's doctrine of election, including the ontological aspect of concern here, as well as topics that clearly represented his doctrine of God according to its more classical formulation and his doctrine of reconciliation, considered to be his most mature work. The doctrine of reconciliation is also a key area of concern in the debate over theological ontology between McCormack and Hunsinger.
 
 Figure 1. 20 Topics for whole *Dogmatics*
+
+<!-- TODO: look at overall vis of all 20 - stacked -->
+
+The most important topics for our analysis are topics 2, 5, 11, 12, 14, 16, and 19. I'll briefly look at the shape of each topic across all the paragraphs of Barth's work, then look at general trends in related topics across the whole in connection to our question.
+
+Figure 2: topic-02 across all paragraphs
+Figure 3: topic-05
+
+I take topic 2 to be indicating an aspect of Barth's Christology, especially in terms of God's activity. It's inclusion of words such as 'god,' 'man,' 'jesus,' 'word,' and 'divine' seem to indicate focus on the person of Jesus as both divine and human. Other top words, such as 'act' and 'grace', might provide a context of God's activity for this particular Christological theme. Looking at its distribution, we can see the presence of topic 2 throughout the whole corpus, with a peak in paragraph 44 ("Man as the Creature of God"), and a number of spikes, primarily after paragraph 33, where Barth's elaborates his doctrine of election, in its Trinitarian and Christological focus. We can see that on average, this topic is more present in texts after paragraph 33, with several chunks: 33-39, 43-47, 55-61, and 63-66. This would accord with the explicit structure of the *Dogmatics*, as it shifts from the Trinity and epistemology, through the doctrine of God, to creation, and finally the doctrine of reconciliation. The topic distribution also indicates the increasing presence of Christological formulation throughout after the doctrine of election.
+
+<!-- TODO: fold in topic 05 into the above paragraph, since it also is Christology and god's reconciling action -->
+
+Figure 4: topic-11
+
+Topic 11 represents Barth's more classically formulated doctrine of God, where Barth describes God's identity in terms of the divine attributes. We see these in the topic's words: "power," "love," "freedom," "glory," and "omnipotence."
+
+
+
+ topic-19, topic-05, topic-12, topic-16, topic-11, topic-14, and topic-02
 
 
 [^1]:	Footnote both
