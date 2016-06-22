@@ -35,11 +35,26 @@ I take topic 2 to be indicating an aspect of Barth's Christology, especially in 
 
 Figure 4: topic-11
 
-Topic 11 represents Barth's more classically formulated doctrine of God, where Barth describes God's identity in terms of the divine attributes. We see these in the topic's words: "power," "love," "freedom," "glory," and "omnipotence."
+Topic 11 represents Barth's more classically formulated doctrine of God, where Barth describes God's identity in terms of the divine attributes. We see these in the topic's words: "power," "love," "freedom," "glory," and "omnipotence." As generally expected, this topic has its peak and spikes within paragraphs 28 through 31, Barth's explicit doctrine of God. Examining the distribution of the topic over all paragraphs, we can note that while it appears regularly and somewhat substantially in the paragraphs from the beginning of the *Dogmatics* through those just mentioned, it regularly constitutes very little of the texts after paragraph 53, and largely disappears within the paragraphs detailing Barth's doctrine of reconciliation.
+
+Figure 5: topic-14
+
+Topic 14 also strongly indicates the doctrine of God, though with a focus on the doctrine of the Trinity. We see the names of all three person (Spirit, Son, and Father), along with "God," "Trinity", and "Christ." Moreover, given "doctrine," "statement," and "concept," this topic seems to refer to Barth's more formal and focused explication of the doctrinal locus. In contrast, Barth is well known for elaborating an account of the Trinity in IV/1 indirectly by way of his doctrine of reconciliation. Topic 14 peaks early in the *Dogmatics*, in paragraphs 9 and 12, and has its other high points in paragraphs between 8 and 16. More broadly, we can see that the topic is very strong in the early sections of the *Dogmatics*, has some presence in paragraphs 29 through 33 (which deal explicitly with the doctrine of God and election), and has little to no presence after paragraph 42. Given that Barth did engage with the doctrine of the Trinity, though indirectly, throughout volume IV, we might ask why the only topic that very directly references all three persons of the Trinity has little presence therein.
+
+Figure 6: topic-16
+<!-- TODO: consider pulling this into the first set of topics - about reconciliation -->
+As a contrast to previous doctrines that specifically engaged the doctrine of God by way of Christology, the Trinity, or divine attributes, topic 16 engages Christian life within the context of reconciliation. The presence of this final word is fairly indicative, but we find also reference to "world," "word," "history," "act," and "event." These words give context to reconciliation, indicating its character as part of God's working toward and with the world, in the person of Jesus Christ. The presence of "christ" and "jesus" are also important; reconciliation has a Christological focus for Barth, but one wherein Jesus is a primary agent. When we look at the distribution of this topic, we can see quickly that it has little presence throughout the *Dogmatics* until the final paragraphs, especially 69 through the fragment at the end. Finally, the inclusion of both "act" and "event" in this topic is significant. Reconciliation is an event that occurs in the relation between God and humanity, centered and enacted in the person of Jesus Christ. McCormack would read these inclusions as perhaps indicative of the fully actualistic ontology that he argues that Barth embraces throughout volume IV, and its composition generally supports this point. However, Hunsinger could just as well accept the increasing presence of an actualistic ontology, given that his interpretation of it has it cohere well with his more traditional metaphysical understanding of Barth's doctrine of the Trinity throughout the *Dogmatics.*
+
+Figure 7: topic-19
+
+Topic 19 is the most self-evidently relevant topic for our research question. It specifically mentions "election," "predestination," and "providence," clearly indicating that it is about the doctrine of election. Even more specifically it contains "eternal," "decree," and "decision," perfectly indicating it's high peak, paragraph 33, in which Barth engages election as God's eternal decree or decision. We do in fact see paragraph 33 as the peak of this topic, with spikes in 32, 48, 49, and 57. Paragraph 57, notably, is the first paragraph of Barth's doctrine of reconciliation, entitled, "The Work of God the Reconciler." Overall, this topic is low throughout the whole of the *Dogmatics*, with high chunks only in paragraphs 32-33, 48-49, and 57. This is not unsurprising, given that the topic is significantly defined by words explicitly constrained to the doctrine of election, with less applicability in other doctrines, e.g. predestination, providence, election.
+
+Figure 8: Topic-03
+
+We have one other election topic, which I consider less relevant to this question, but which has to be noted. Topic 3 also specifically engages "election", but is packed with terms related specificaly to Israel and God's history with Israel. It casts election specifically in terms of the election of Israel and the Jews, and relates that to the election of Jesus Christ. Not surprisingly, this topic has it's peak at paragraph 34, "The Election of the Community," and its only other high point in paragraph 35, "The Election of the Individual." It has little to no presence prior to paragraph 30, and only a very low presence after 35. Given its focus on the community and Israel, it has little to do with election as it is a concern for McCormack, Hunsinger, and their other conversation partners.
 
 
-
- topic-19, topic-05, topic-12, topic-16, topic-11, topic-14, and topic-02
+ topic-19, topic-05, topic-16, topic-11, topic-14, and topic-02
 
 
 [^1]:	Footnote both
