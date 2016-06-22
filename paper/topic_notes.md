@@ -1,6 +1,4 @@
-- all notes based on graphs done in bokeh
-
-2, 13, 18
+# Notes based on Bokeh topic over paragraphs bar graphs
 
 ### topic-19: god creature divine election note doctrine history activity grace christian creaturely covenant predestination providence eternal christ work faith decree decision
 
@@ -61,3 +59,17 @@ notes: very small relative spike in 62. Otherwise, this is very much a topic pre
 peak: 67
 spikes: 62, 71, 72
 notes: low or no presence through first 44 paragraphs, low presence from 44 on with intermittent spikes between 62 and 74
+
+# Notes based on D3 topic distribution for single paragraphs bar graphs
+
+### Paragraph 33: The Election of Jesus Christ
+
+Composed of: 00, 02, 03, 05, 10, 11, 12, 14, 19
+High: 19
+Other significant: 00, 02, 10
+
+### Paragraph 59: The Obedience of the Son of God
+
+Composed of: 00, 02, 03, 04, 05, 06, 10, 12, 14, 15, 16, 18
+High: 05
+Other significant: 00, 02, 10, 12
