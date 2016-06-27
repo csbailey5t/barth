@@ -104,11 +104,16 @@ class CsvCorpus:
     def _read_data(self, csv_file=None):
         csv.field_size_limit(CSV_FIELD_LIMIT)
         csv_file = self.csv_file if csv_file is None else csv_file
+        data_dir = os.path.dirname(csv_file)
 
         with open(csv_file, 'r') as fin:
             rows = list(csv.DictReader(fin))
         for row in rows:
             row['loc'] = '.'.join([row['volume'], row['page'], row['section']])
+            if 'text' not in row:
+                filename = os.path.join(data_dir, row['filename'])
+                with open(filename) as text_fin:
+                    row['text'] = text_fin.read()
 
         df = pandas.DataFrame(
             rows,
