@@ -205,7 +205,7 @@ def parse_args(argv=None):
                         help='If given, sets a range of n-grams to use for '
                              'features. Formatted like FROM-TO. E.g., 1-3.')
     parser.add_argument('-F', '--select-features', dest='select_features',
-                        action='store_true', default=False,
+                        action='store', default=False, type=float,
                         help='Select features.')
     parser.add_argument('-R', '--results', dest='results_file', action='store',
                         default=os.devnull,
@@ -221,7 +221,7 @@ def main():
 
     corpus = read_corpus_features(args.corpus, get_english_stopset())
     if args.select_features:
-        corpus.select_features()
+        corpus.select_features(args.select_features)
 
     if args.feature_file:
         with open(args.feature_file, 'w') as fout:
@@ -271,7 +271,7 @@ def main():
                 writer.writerow(result)
 
     print('done.')
-    
+
 
 if __name__ == '__main__':
     main()
