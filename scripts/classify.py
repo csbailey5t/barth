@@ -211,13 +211,16 @@ def parse_args(argv=None):
                         default=os.devnull,
                         help='A CSV file to write results to as they\'re '
                              'output. Default = {}.'.format(os.devnull))
+    parser.add_argument('--result-field', dest='result_fields', action='append',
+                        help='Fields with constant values to include in the '
+                             'results file. Formatted like "field:value"')
 
     return parser.parse_args(argv)
 
 
-def main():
+def main(argv=None):
     """The main function."""
-    args = parse_args()
+    args = parse_args(argv)
 
     corpus = read_corpus_features(args.corpus, get_english_stopset())
     if args.select_features:
@@ -242,9 +245,11 @@ def main():
         ensemble.RandomForestClassifier,
     ]
 
+    result_fields = dict(fv.split(':', 1) for fv in args.result_fields)
     results_new = not os.path.exists(args.results_file)
+    results_header = sorted(result_fields.keys()) + RESULTS_HEADER
     with open(args.results_file, 'a') as fout:
-        writer = csv.DictWriter(fout, RESULTS_HEADER, extrasaction='ignore')
+        writer = csv.DictWriter(fout, results_header, extrasaction='ignore')
         if results_new:
             writer.writeheader()
 
@@ -257,6 +262,7 @@ def main():
                 report_classifier(**result)
 
                 cmatrix = result['confusion_matrix']
+                result.update(result_fields)
                 result.update(
                     classifier_name=cls_name,
                     test_ratio=args.ratio,
