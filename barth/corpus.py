@@ -94,6 +94,9 @@ class Corpus:
                 )
 
 class CsvCorpus:
+    KEYS = [
+        'volume_n', 'part', 'chapter_n', 'paragraph_n', 'chunk_n', 'block_n',
+    ]
 
     def __init__(self, csv_file, tagger=None, stopset=None):
         self.csv_file = csv_file
@@ -109,7 +112,7 @@ class CsvCorpus:
         with open(csv_file, 'r') as fin:
             rows = list(csv.DictReader(fin))
         for row in rows:
-            row['loc'] = '.'.join([row['volume'], row['page'], row['section']])
+            row['loc'] = '.'.join(row[k] for k in self.KEYS if k in row)
             if 'text' not in row:
                 filename = os.path.join(data_dir, row['filename'])
                 with open(filename) as text_fin:
@@ -117,7 +120,10 @@ class CsvCorpus:
 
         df = pandas.DataFrame(
             rows,
-            columns=['filename', 'loc', 'page_title', 'section_title', 'text'],
+            columns=[
+                'filename', 'loc', 'volume_title', 'chapter_title',
+                'paragraph_title', 'text',
+            ],
             index=[r['loc'] for r in rows],
         )
 
