@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 
+from collections import namedtuple
+import csv
 import os
-import shutil
-import traceback
+from multiprocessing import Pool
+import sys
 
 import classify
 
@@ -17,39 +19,98 @@ NGRAMS = [
     ('trigram', '1-3'),
 ]
 
+ArgTuple = namedtuple(
+    'ArgTuple',
+    ('corpus', 'ratio', 'feature_file', 'ngram_range', 'select_features',
+        'result_fields',)
+)
+Job = namedtuple(
+    'Job',
+    ('cls', 'args', 'chunking', 'ngrams', 'selected')
+)
+Result = namedtuple(
+    'Result',
+    ('chunking', 'ngrams', 'selected') + tuple(classify.RESULTS_HEADER),
+)
+RESULT_FIELDS = set(Result._fields)
 
-def run(name, seg_name, seg_range, input_dir, results_csv, select=False,
-        output_base=OUTPUT):
-    output_dir = os.path.join(
-        output_base,
-        '{}-{}-{}'.format(name, seg_name, 'select' if select else 'all')
-    )
 
-    if os.path.exists(output_dir):
-        shutil.rmtree(output_dir, True)
-    os.makedirs(output_dir)
+def run_all(input_dir, output_base, ngram_ranges):
+    with Pool() as pool:
+        jobs = all_jobs(input_dir, output_base, ngram_ranges)
+        yield from pool.map(classify_job, jobs)
 
-    args = [
-        '--corpus=' + os.path.join(input_dir, 'corpus.csv'),
-        '--results=' + results_csv,
-        '--feature-file=' + os.path.join(output_dir, 'features.log'),
-        '--result-field=chunking:' + name,
-        '--result-field=ngrams:' + seg_name,
-        '--result-field=selected:' + str(select),
-    ]
-    if seg_range is not None:
-        args.append('--ngram-range=' + seg_range)
-    if select:
-        args.append('--select-features=0.0')
+
+def classify_job(job):
+    all_results = []
+    job_str = str(job)
+    sys.stdout.write('START: {}\n'.format(job_str))
+    sys.stdout.flush()
 
     try:
-        classify.main(args)
-    except Exception as ex:
-        print('ERROR: {}-{} in {}'.format(name, seg_name, input_dir))
-        if DEBUG:
-            raise
-        else:
-            traceback.print_exc()
+        results = classify.classify_job((job.cls, job.args))
+
+        for result in results:
+            result.update(
+                chunking=job.chunking,
+                ngrams=job.ngrams,
+                selected=job.selected,
+            )
+            all_results.append(Result(**{
+                k: v for (k, v) in result.items() if k in RESULT_FIELDS
+            }))
+
+    except ValueError:
+        results = []
+
+    sys.stdout.write('END  : {}\n'.format(job_str))
+    sys.stdout.flush()
+    return all_results
+
+
+def all_jobs(input_dir, output_base, ngram_options):
+    for name in os.listdir(input_dir):
+        dirname = os.path.join(input_dir, name)
+        name_args = ArgTuple(
+            corpus=os.path.join(dirname, 'corpus.csv'),
+            ratio=0.2,
+            feature_file=None,
+            ngram_range=None,
+            select_features=None,
+            result_fields={},
+        )
+
+        for (seg_name, seg_range) in ngram_options:
+            seg_args = name_args._replace(ngram_range=seg_range)
+
+            for select in (None, 0.0, 0.1, 0.2, 0.3):
+                output_dir = os.path.join(
+                    output_base,
+                    '{}-{}-{}'.format(
+                        name,
+                        seg_name,
+                        str(select) if select is not None else 'all',
+                    ))
+                if not os.path.exists(output_dir):
+                    os.makedirs(output_dir)
+                args = seg_args._replace(
+                    feature_file=os.path.join(output_dir, 'features.log'),
+                    select_features=select,
+                    result_fields={
+                        'chunking': name,
+                        'ngrams': seg_name,
+                        'selected': str(select) if select is not None else '',
+                        },
+                )
+
+                for cls, args2 in classify.make_jobs(args):
+                    yield Job(
+                        cls,
+                        args2,
+                        name,
+                        seg_name,
+                        str(select) if select is not None else '',
+                    )
 
 
 def main():
@@ -58,19 +119,13 @@ def main():
     if os.path.exists(results_file):
         os.remove(results_file)
 
-    for name in os.listdir(DATADIR):
-        print(name)
-        print('=' * len(name))
-        dirname = os.path.join(DATADIR, name)
+    if not os.path.exists(OUTPUT):
+        os.makedirs(OUTPUT)
 
-        for (seg_name, seg_range) in NGRAMS:
-            print(seg_name)
-            print('-' * len(seg_name))
-
-            run(name, seg_name, seg_range, dirname, results_file, False, OUTPUT)
-            run(name, seg_name, seg_range, dirname, results_file, True , OUTPUT)
-
-            print()
+    with open(results_file, 'w') as fout:
+        writer = csv.writer(fout)
+        writer.writerow(Result._fields)
+        writer.writerows(run_all(DATADIR, OUTPUT, NGRAMS))
 
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@
 
 import argparse
 import csv
+from multiprocessing import Pool
 import operator
 import os
 import sys
@@ -40,6 +41,14 @@ RESULTS_HEADER = [
     'true_negatives',
     'false_positives',
     'false_negatives',
+]
+
+CLASSIFIERS = [
+    nb.GaussianNB,
+    lm.LogisticRegression,
+    svm.SVC,
+    tree.DecisionTreeClassifier,
+    ensemble.RandomForestClassifier,
 ]
 
 
@@ -173,6 +182,53 @@ class ClassifierCorpus(CsvCorpus):
         return classifier.predict(X)
 
 
+def make_jobs(args):
+    for cls in CLASSIFIERS:
+        yield (cls, args)
+
+
+def classify_job(job, debug=False):
+    cls, args = job
+
+    corpus = read_corpus_features(args.corpus, get_english_stopset())
+    if args.select_features:
+        corpus.select_features(args.select_features)
+
+    if args.feature_file:
+        with open(args.feature_file, 'w') as fout:
+            for row in corpus.tfidf.columns:
+                fout.write('{}\n'.format(row))
+
+    feature_count = len(corpus.tfidf.columns)
+    if args.ngram_range:
+        ngram_range = '-'.join(str(x) for x in args.ngram_range)
+    else:
+        ngram_range = 1
+
+    cls_name = cls.__name__
+    if debug:
+        print("{}...".format(cls_name))
+    classifier = cls()
+
+    for result in corpus.confused_x_validate(classifier):
+        report_classifier(**result)
+
+        cmatrix = result['confusion_matrix']
+        result.update(args.result_fields)
+        result.update(
+            classifier_name=cls_name,
+            test_ratio=args.ratio,
+            feature_count=feature_count,
+            select_features=args.select_features,
+            ngram_range=ngram_range,
+            true_positives=try_index(cmatrix, 0, 0),
+            false_negatives=try_index(cmatrix, 0, 1),
+            false_positives=try_index(cmatrix, 1, 0),
+            true_negatives=try_index(cmatrix, 1, 1),
+        )
+        yield result
+
+
 def int_pair(value):
     return tuple(int(x) for x in value.split('-'))
 
@@ -222,29 +278,6 @@ def main(argv=None):
     """The main function."""
     args = parse_args(argv)
 
-    corpus = read_corpus_features(args.corpus, get_english_stopset())
-    if args.select_features:
-        corpus.select_features(args.select_features)
-
-    if args.feature_file:
-        with open(args.feature_file, 'w') as fout:
-            for row in corpus.tfidf.columns:
-                fout.write('{}\n'.format(row))
-
-    feature_count = len(corpus.tfidf.columns)
-    if args.ngram_range:
-        ngram_range = '-'.join(str(x) for x in args.ngram_range)
-    else:
-        ngram_range = 1
-
-    classifiers = [
-        nb.GaussianNB,
-        lm.LogisticRegression,
-        svm.SVC,
-        tree.DecisionTreeClassifier,
-        ensemble.RandomForestClassifier,
-    ]
-
     result_fields = dict(fv.split(':', 1) for fv in args.result_fields)
     results_new = not os.path.exists(args.results_file)
     results_header = sorted(result_fields.keys()) + RESULTS_HEADER
@@ -253,27 +286,8 @@ def main(argv=None):
         if results_new:
             writer.writeheader()
 
-        for cls in classifiers:
-            cls_name = cls.__name__
-            print("{}...".format(cls_name))
-            classifier = cls()
-
-            for result in corpus.confused_x_validate(classifier):
-                report_classifier(**result)
-
-                cmatrix = result['confusion_matrix']
-                result.update(result_fields)
-                result.update(
-                    classifier_name=cls_name,
-                    test_ratio=args.ratio,
-                    feature_count=feature_count,
-                    select_features=args.select_features,
-                    ngram_range=ngram_range,
-                    true_positives=try_index(cmatrix, 0, 0),
-                    false_negatives=try_index(cmatrix, 0, 1),
-                    false_positives=try_index(cmatrix, 1, 0),
-                    true_negatives=try_index(cmatrix, 1, 1),
-                )
+        with Pool() as pool:
+            for result in pool.map(classify_job, make_jobs(args)):
                 writer.writerow(result)
 
     print('done.')
