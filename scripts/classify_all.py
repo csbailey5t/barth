@@ -15,19 +15,10 @@ DATADIR = 'data/input/'
 OUTPUT = 'output/'
 NGRAMS = [
     ('unigram', None),
-    ('bigram', '1-2'),
-    ('trigram', '1-3'),
+    ('bigram', (1, 2)),
+    ('trigram', (1, 3)),
 ]
 
-ArgTuple = namedtuple(
-    'ArgTuple',
-    ('corpus', 'ratio', 'feature_file', 'ngram_range', 'select_features',
-        'result_fields',)
-)
-Job = namedtuple(
-    'Job',
-    ('cls', 'args', 'chunking', 'ngrams', 'selected')
-)
 Result = namedtuple(
     'Result',
     ('chunking', 'ngrams', 'selected') + tuple(classify.RESULTS_HEADER),
@@ -36,19 +27,26 @@ RESULT_FIELDS = set(Result._fields)
 
 
 def run_all(input_dir, output_base, ngram_ranges):
+    jobs = list(all_jobs(input_dir, output_base, ngram_ranges))
+    for job in jobs:
+        print('freezing to {}'.format(job.get_frozen_file()))
+        job.freeze_corpus()
+        del job.corpus
     with Pool() as pool:
-        jobs = all_jobs(input_dir, output_base, ngram_ranges)
         yield from pool.map(classify_job, jobs)
 
 
 def classify_job(job):
     all_results = []
-    job_str = str(job)
+    job_str = job.get_frozen_file()
     sys.stdout.write('START: {}\n'.format(job_str))
     sys.stdout.flush()
 
     try:
-        results = classify.classify_job((job.cls, job.args))
+        sys.stdout.write('thawing {}'.format(job_str))
+        sys.stdout.flush()
+        job.thaw_corpus()
+        results = job.classify()
 
         for result in results:
             result.update(
@@ -71,13 +69,14 @@ def classify_job(job):
 def all_jobs(input_dir, output_base, ngram_options):
     for name in os.listdir(input_dir):
         dirname = os.path.join(input_dir, name)
-        name_args = ArgTuple(
+        name_args = classify.ArgTuple(
             corpus=os.path.join(dirname, 'corpus.csv'),
             ratio=0.2,
             feature_file=None,
             ngram_range=None,
             select_features=None,
             result_fields={},
+            min_df=3,
         )
 
         for (seg_name, seg_range) in ngram_options:
@@ -103,14 +102,9 @@ def all_jobs(input_dir, output_base, ngram_options):
                         },
                 )
 
-                for cls, args2 in classify.make_jobs(args):
-                    yield Job(
-                        cls,
-                        args2,
-                        name,
-                        seg_name,
-                        str(select) if select is not None else '',
-                    )
+                for job in classify.Job.make_jobs(args):
+                    job.chunking = name
+                    yield job
 
 
 def main():

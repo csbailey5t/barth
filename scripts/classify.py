@@ -2,10 +2,12 @@
 
 
 import argparse
+from collections import namedtuple
 import csv
 from multiprocessing import Pool
 import operator
 import os
+import pickle
 import sys
 
 import numpy as np
@@ -52,16 +54,24 @@ CLASSIFIERS = [
 ]
 
 
+ArgTuple = namedtuple(
+    'ArgTuple',
+    ('corpus', 'ratio', 'feature_file', 'ngram_range', 'select_features',
+        'result_fields', 'min_df')
+)
+
+
 first = operator.itemgetter(0)
 second = operator.itemgetter(1)
 
 
-def read_corpus_features(csv_file, stopset=None):
+def read_corpus_features(csv_file, stopset=None, tfidf_args=None):
     """This reads a list of directories and pulls the features from its
     documents. The tag for each document is its immediate directory's
     name."""
     corpus = ClassifierCorpus(
         csv_file, tagger=build_tagger(), stopset=stopset,
+        tfidf_args=tfidf_args,
     )
 
     corpus.tokenize()
@@ -87,9 +97,10 @@ def report_classifier(classifier, confusion_matrix, precision, recall, f1):
 
 class ClassifierCorpus(CsvCorpus):
 
-    def __init__(self, file, tagger=None, stopset=None):
+    def __init__(self, file, tagger=None, stopset=None, tfidf_args=None):
         super(ClassifierCorpus, self).__init__(file, tagger, stopset)
         self.file = file
+        self.tfidf_args = None
         self.__tfidf = None
         self.__array = None
         self.labels = np.array([0, 1])
@@ -104,7 +115,8 @@ class ClassifierCorpus(CsvCorpus):
     @property
     def tfidf(self):
         if self.__tfidf is None:
-            self.__tfidf = self.tfidf_vectorize()
+            tfidf_args = {} if self.tfidf_args is None else self.tfidf_args
+            self.__tfidf = self.tfidf_vectorize(**tfidf_args)
         return self.__tfidf
 
     @property
@@ -182,51 +194,107 @@ class ClassifierCorpus(CsvCorpus):
         return classifier.predict(X)
 
 
-def make_jobs(args):
-    for cls in CLASSIFIERS:
-        yield (cls, args)
+class Job:
 
+    def __init__(self, cls, args, chunking):
+        self.cls = cls
+        self.args = args
+        self.chunking = chunking
+        self.__corpus = None
 
-def classify_job(job, debug=False):
-    cls, args = job
+    @classmethod
+    def make_jobs(cls, args):
+        for classifier_cls in CLASSIFIERS:
+            yield cls(classifier_cls, args, None)
 
-    corpus = read_corpus_features(args.corpus, get_english_stopset())
-    if args.select_features:
-        corpus.select_features(args.select_features)
+    def get_corpus(self):
+        if self.__corpus is None:
+            self.__corpus = self.load_corpus()
+        return self.__corpus
 
-    if args.feature_file:
-        with open(args.feature_file, 'w') as fout:
-            for row in corpus.tfidf.columns:
-                fout.write('{}\n'.format(row))
+    def set_corpus(self, corpus):
+        self.__corpus = corpus
 
-    feature_count = len(corpus.tfidf.columns)
-    if args.ngram_range:
-        ngram_range = '-'.join(str(x) for x in args.ngram_range)
-    else:
-        ngram_range = 1
+    def del_corpus(self):
+        self.__corpus = None
 
-    cls_name = cls.__name__
-    if debug:
-        print("{}...".format(cls_name))
-    classifier = cls()
+    corpus = property(get_corpus, set_corpus, del_corpus)
 
-    for result in corpus.confused_x_validate(classifier):
-        report_classifier(**result)
+    def get_frozen_file(self):
+        if self.args.ngram_range:
+            ngram = '_'.join(str(n) for n in self.args.ngram_range)
+        else:
+            ngram = 1
 
-        cmatrix = result['confusion_matrix']
-        result.update(args.result_fields)
-        result.update(
-            classifier_name=cls_name,
-            test_ratio=args.ratio,
-            feature_count=feature_count,
-            select_features=args.select_features,
-            ngram_range=ngram_range,
-            true_positives=try_index(cmatrix, 0, 0),
-            false_negatives=try_index(cmatrix, 0, 1),
-            false_positives=try_index(cmatrix, 1, 0),
-            true_negatives=try_index(cmatrix, 1, 1),
+        return '{}-{}-{}-{}.pickle'.format(
+            self.chunking, ngram, self.args.select_features, self.args.min_df,
         )
-        yield result
+
+    def freeze_corpus(self):
+        corpus = self.corpus
+        with open(self.get_frozen_file(), 'wb') as fout:
+            pickle.dump(corpus, fout, -1)
+
+    def thaw_corpus(self):
+        filename = self.get_frozen_file()
+        if os.path.exists(filename):
+            with open(filename, 'rb') as fin:
+                self.corpus = pickle.load(fin)
+
+    def load_corpus(self):
+        args = self.args
+
+        corpus = read_corpus_features(
+            args.corpus,
+            get_english_stopset(),
+            tfidf_args={
+                'ngram_range': args.ngram_range,
+                'min_df': args.min_df,
+            },
+        )
+        corpus.tfidf
+        if args.select_features is not None:
+            corpus.select_features(args.select_features)
+
+        if args.feature_file:
+            with open(args.feature_file, 'w') as fout:
+                for row in corpus.tfidf.columns:
+                    fout.write('{}\n'.format(row))
+
+        return corpus
+
+    def classify(self, debug=False):
+        cls, args = self.cls, self.args
+        corpus = self.corpus
+
+        feature_count = len(corpus.tfidf.columns)
+        if args.ngram_range:
+            ngram_range = '-'.join(str(x) for x in args.ngram_range)
+        else:
+            ngram_range = 1
+
+        cls_name = cls.__name__
+        if debug:
+            print("{}...".format(cls_name))
+        classifier = cls()
+
+        for result in corpus.confused_x_validate(classifier):
+            report_classifier(**result)
+
+            cmatrix = result['confusion_matrix']
+            result.update(args.result_fields)
+            result.update(
+                classifier_name=cls_name,
+                test_ratio=args.ratio,
+                feature_count=feature_count,
+                select_features=args.select_features,
+                ngram_range=ngram_range,
+                true_positives=try_index(cmatrix, 0, 0),
+                false_negatives=try_index(cmatrix, 0, 1),
+                false_positives=try_index(cmatrix, 1, 0),
+                true_negatives=try_index(cmatrix, 1, 1),
+            )
+            yield result
 
 
 def int_pair(value):
@@ -270,6 +338,10 @@ def parse_args(argv=None):
     parser.add_argument('--result-field', dest='result_fields', action='append',
                         help='Fields with constant values to include in the '
                              'results file. Formatted like "field:value"')
+    parser.add_argument('--min-df', dest='min_df', action='store',
+                        type=int,
+                        help='Minimum document frequency allowed. Any '
+                             'less than this will be culled.')
 
     return parser.parse_args(argv)
 
@@ -287,7 +359,8 @@ def main(argv=None):
             writer.writeheader()
 
         with Pool() as pool:
-            for result in pool.map(classify_job, make_jobs(args)):
+            for result in pool.map(lambda j: j.classify(),
+                                   Job.make_jobs(args)):
                 writer.writerow(result)
 
     print('done.')
