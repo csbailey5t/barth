@@ -226,7 +226,9 @@ class Job:
         else:
             ngram = 1
 
-        return '{}-{}-{}-{}.pickle'.format(
+        if not os.path.exists('frozen'):
+            os.makedirs('frozen')
+        return 'frozen/{}-{}-{}-{}.pickle'.format(
             self.chunking, ngram, self.args.select_features, self.args.min_df,
         )
 

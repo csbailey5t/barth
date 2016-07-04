@@ -8,6 +8,7 @@ __pycache__/
 output/
 logs/
 data/
+frozen/
 
 .tagger.pickle
 

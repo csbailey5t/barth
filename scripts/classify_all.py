@@ -28,12 +28,23 @@ RESULT_FIELDS = set(Result._fields)
 
 def run_all(input_dir, output_base, ngram_ranges):
     jobs = list(all_jobs(input_dir, output_base, ngram_ranges))
+    good_jobs = []
+    bad_jobs = set()
     for job in jobs:
-        print('freezing to {}'.format(job.get_frozen_file()))
-        job.freeze_corpus()
-        del job.corpus
+        filename = job.get_frozen_file()
+        if not os.path.exists(filename) and filename not in bad_jobs:
+            print('freezing to {}'.format(filename))
+            try:
+                job.freeze_corpus()
+            except ValueError:
+                print('\tinvalid (probably having no features). skipping.')
+                bad_jobs.add(filename)
+            else:
+                del job.corpus
+                good_jobs.append(job)
+
     with Pool() as pool:
-        yield from pool.map(classify_job, jobs)
+        yield from pool.map(classify_job, good_jobs)
 
 
 def classify_job(job):
