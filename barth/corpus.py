@@ -93,6 +93,7 @@ class Corpus:
                     self.tokenize(f.read()),
                 )
 
+
 class CsvCorpus:
     KEYS = [
         'volume_n', 'part', 'chapter_n', 'paragraph_n', 'chunk_n', 'block_n',
@@ -189,6 +190,7 @@ class CsvCorpus:
             raise ValueError(
                 'You must specify a tagger before calling tag_tokens.',
             )
+
         def tag(tokens):
             return [
                 '{}/{}'.format(*tt) for tt in zip(tokens, tagger.tag(tokens))
@@ -227,7 +229,9 @@ if __name__ == '__main__':
     import barth.tagging
     tagger = barth.tagging.build_tagger()
     # tagger = None
-    corpus = CsvCorpus('data/corpus.csv', tagger=tagger, stopset=get_english_stopset())
+    corpus = CsvCorpus(
+        'data/corpus.csv', tagger=tagger, stopset=get_english_stopset(),
+    )
     counts = corpus.count_vectorize(ngram_range=(1, 3))
     print(corpus.data)
     print(counts)
