@@ -220,12 +220,15 @@ class Job:
 
     corpus = property(get_corpus, set_corpus, del_corpus)
 
-    def get_frozen_file(self):
+    def ngram_str(self, sep='-'):
         if self.args.ngram_range:
-            ngram = '_'.join(str(n) for n in self.args.ngram_range)
+            ngram = sep.join(str(n) for n in self.args.ngram_range)
         else:
-            ngram = 1
+            ngram = '1'
+        return ngram
 
+    def get_frozen_file(self):
+        ngram = self.ngram_str('_')
         if not os.path.exists('frozen'):
             os.makedirs('frozen')
         return 'frozen/{}-{}-{}-{}.pickle'.format(

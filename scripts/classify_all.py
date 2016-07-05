@@ -11,6 +11,8 @@ import classify
 
 
 DEBUG = True
+SKIP_FREEZE = True
+MAX_CORPUS_SIZE = 10 * (2**30)
 DATADIR = 'data/input/'
 OUTPUT = 'output/'
 NGRAMS = [
@@ -33,8 +35,10 @@ def run_all(input_dir, output_base, ngram_ranges):
     for job in jobs:
         filename = job.get_frozen_file()
         if os.path.exists(filename):
-            good_jobs.append(job)
-        elif filename not in bad_jobs:
+            if (MAX_CORPUS_SIZE is not None and
+                    os.path.getsize(filename) < MAX_CORPUS_SIZE):
+                good_jobs.append(job)
+        elif filename not in bad_jobs and not SKIP_FREEZE:
             print('freezing to {}'.format(filename))
             try:
                 job.freeze_corpus()
@@ -43,7 +47,9 @@ def run_all(input_dir, output_base, ngram_ranges):
                 bad_jobs.add(filename)
             else:
                 del job.corpus
-                good_jobs.append(job)
+                if (MAX_CORPUS_SIZE is not None and
+                        os.path.getsize(filename) < MAX_CORPUS_SIZE):
+                    good_jobs.append(job)
 
     with Pool() as pool:
         yield from pool.map(classify_job, good_jobs)
@@ -64,8 +70,8 @@ def classify_job(job):
         for result in results:
             result.update(
                 chunking=job.chunking,
-                ngrams=job.ngrams,
-                selected=job.selected,
+                ngrams=job.ngram_str(),
+                selected=job.args.select_features,
             )
             all_results.append(Result(**{
                 k: v for (k, v) in result.items() if k in RESULT_FIELDS
