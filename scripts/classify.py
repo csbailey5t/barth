@@ -235,13 +235,30 @@ class Job:
     def freeze_corpus(self):
         corpus = self.corpus
         with open(self.get_frozen_file(), 'wb') as fout:
-            pickle.dump(corpus, fout, -1)
+            buf = pickle.dumps(corpus, -1)
+
+            i = 0
+            window = 2**30
+            while i < len(buf):
+                fout.write(buf[i:i+window])
+                i += window
 
     def thaw_corpus(self):
         filename = self.get_frozen_file()
         if os.path.exists(filename):
-            with open(filename, 'rb') as fin:
-                self.corpus = pickle.load(fin)
+            try:
+                with open(filename, 'rb') as fin:
+                    buf = b''
+                    window = 2**30
+                    while True:
+                        tmp = fin.read(window)
+                        buf += tmp
+                        if not tmp:
+                            break
+                    self.corpus = pickle.loads(buf)
+            except OSError:
+                sys.stderr.write('ERROR reading {}:'.format(filename))
+                raise
 
     def load_corpus(self):
         args = self.args

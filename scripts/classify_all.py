@@ -32,7 +32,9 @@ def run_all(input_dir, output_base, ngram_ranges):
     bad_jobs = set()
     for job in jobs:
         filename = job.get_frozen_file()
-        if not os.path.exists(filename) and filename not in bad_jobs:
+        if os.path.exists(filename):
+            good_jobs.append(job)
+        elif filename not in bad_jobs:
             print('freezing to {}'.format(filename))
             try:
                 job.freeze_corpus()
