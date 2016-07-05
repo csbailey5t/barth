@@ -193,7 +193,7 @@ class CsvCorpus:
 
         def tag(tokens):
             return [
-                '{}/{}'.format(*tt) for tt in zip(tokens, tagger.tag(tokens))
+                '{}/{}'.format(*tt) for tt in tagger.tag(tokens)
             ]
 
         return self._map_tokens(tag)

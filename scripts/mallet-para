@@ -1,0 +1,4 @@
+
+mallet import-file --input paragraph.tsv --output paragraph.vectors --token-regex '\S+' --keep-sequence TRUE
+mallet train-topics --input paragraph.vectors --output-topic-keys paragraph.keys  --xml-topic-phrase-report paragraph.xml --output-doc-topics paragraph.topics --num-topics 20
+
