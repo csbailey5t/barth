@@ -25,6 +25,7 @@ def load_corpus(corpus_dir, tagger, stopset):
     corpus.tokenize()
     corpus.filter_stopset()
     corpus.filter_short()
+    corpus.filter_alnum()
     corpus.tag_tokens()
     corpus.tag_rows(lambda row: int(not is_before_election(row)))
 
