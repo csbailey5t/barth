@@ -4,7 +4,7 @@
 
 peak: 33
 spikes: 32, 48, 49, 57
-notes: very low before 31. Overall low throughout *Dogmatics*, but spikes with 32-33 and 48-48 with a medium spike in 57
+notes: very low before 31. Overall low throughout *Dogmatics*, but spikes with 32-33 and 48-49 with a medium spike in 57
 
 ### topic-03: israel election jesus church god elect people rejected christ god's mercy judas divine faith david jews gentiles paul promise king
 
@@ -73,3 +73,33 @@ Other significant: 00, 02, 10
 Composed of: 00, 02, 03, 04, 05, 06, 10, 12, 14, 15, 16, 18
 High: 05
 Other significant: 00, 02, 10, 12
+
+# Notes based on before and after topic models
+
+## Before
+
+### Topic-01: election doctrine divine grace god predestination man people decision calvin creature electing freedom work salvation reformed decree son christian concept
+
+Peak: 32
+Spikes: none
+Notes: almost non-evident until 32
+
+### Topic-04: religion christian revelation truth man christianity religions religious grace human true religio law judgment rom election israel unbelief mysticism heathen
+
+Peak: 17
+Spikes: none
+Notes: low level, little presence. some in 1, then big spike in 17.
+
+## After
+
+### Topic-12: jesus election elect judas christ rejected david king grace apostles saul death israel rejection testament word judah individual witness prophet
+
+Peak: 35
+Spikes: none
+Notes: little to no presence after
+
+### Topic-17: israel church election faith mercy jews people jesus gentiles god's god community paul christ israel's divine elected law promise fulfillment
+
+Peak: 34
+Spikes: none
+Notes: low level presence throughout much of the rest of the *Dogmatics*

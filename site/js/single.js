@@ -25,6 +25,17 @@ var svg = d3.select("main").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// d3.tsv("barth.keys", function(error, data){
+//   // console.log(data[0].words);
+//   var topics = ['topic-00', 'topic-01', 'topic-02', 'topic-03', 'topic-04', 'topic-05', 'topic-06', 'topic-07', 'topic-08', 'topic-09', 'topic-10', 'topic-11', 'topic-12', 'topic-13', 'topic-14', 'topic-15', 'topic-16', 'topic-17', 'topic-18', 'topic-19'];
+//   for (var i = 0; i < data.length; i++) {
+//     for (var j = 0; j < topics.length; j++){
+//       var topic[j] = data[i]
+//     }
+//   }
+//   console.log(topics);
+// });
+
 d3.csv("barth_composition_full.csv", function(error, data) {
 
     var getFilename = function(d) { return d.file.split('/').pop(); };
@@ -33,6 +44,13 @@ d3.csv("barth_composition_full.csv", function(error, data) {
       b = +getFilename(b).split('.').shift();
       return d3.ascending( a, b );
     });
+
+    // var tooltip = d3.select("main")
+    //   .append("div")
+    //   .style("position", "absolute")
+    //   .style("z-index", "10")
+    //   .style("visibility", "hidden")
+    //   .text("a simple tooltip");
 
     x.domain(d3.keys(data[0]).filter(function(key) { return key.startsWith('topic-'); }));
     y.domain([0, 1]);
@@ -75,11 +93,13 @@ d3.csv("barth_composition_full.csv", function(error, data) {
             var bars = svg.selectAll(".bar")
                   .data(topics);
 
-
             bars.enter().append("rect")
-                  .attr("class", "bar")
-                  .attr("x", function(d) { return x(d.key); })
-                  .attr("width", x.rangeBand());
+              .attr("class", "bar")
+              .attr("x", function(d) { return x(d.key); })
+              .attr("width", x.rangeBand());
+              // .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+            	// .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+            	// .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
             bars.transition()
                   .attr("y", function(d) { return y(d.value); })
@@ -89,6 +109,8 @@ d3.csv("barth_composition_full.csv", function(error, data) {
 
         });
 
+        // Create tooltips with labels for each topic
+        // Will need to pull in models/full/barth.keys to get data
 
 
 });

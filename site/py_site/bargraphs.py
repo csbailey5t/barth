@@ -20,11 +20,11 @@ def break_names(df):
 
 
 def main():
-    data = pd.read_csv('barth_composition_para_only.csv')
+    data = pd.read_csv('after/composition_para_only_after.csv')
 
     cleaned_data = break_names(data)
     # Save a copy of the manipulated data for later use
-    cleaned_data.to_csv('barth_composition_clean.csv')
+    # cleaned_data.to_csv('barth_composition_clean.csv')
 
     columns = cleaned_data.columns.values
     topics = [topic for topic in columns if 'topic' in topic]
@@ -39,7 +39,7 @@ def main():
             title="Proportion per pararaph of " + topic
         )
 
-        output_file(topic + '.html')
+        output_file('after/' + topic + '.html')
         show(plot)
 
 
