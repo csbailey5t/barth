@@ -50,15 +50,17 @@ def focus_corpus(name, corpus, term, width):
             if token.startswith(term_slash):
                 output += tokens[i-width:i]
                 output += tokens[i+1:i+width+1]
-        return ' '.join(output)
+        return output
 
-    corpus._map(focus, 'tokens', 'focus')
+    corpus._map(focus, 'tokens', 'focus_tokens')
+    corpus._map(lambda ts: ' '.join(ts), 'focus_tokens', 'focus')
     data = corpus.data
-    print('data columns = {}'.format(data.columns))
     data.to_csv(
         name + '.tsv', sep='\t', header=False, index=False,
         columns=['filename', 'tag', 'focus'],
     )
+
+    return corpus
 
 
 def parse_args(argv=None):
@@ -78,6 +80,11 @@ def parse_args(argv=None):
                              'term. Default = 3.')
     parser.add_argument('-t', '--term', dest='term', action='store',
                         help='The term to focus this corpus around.')
+    parser.add_argument('-w', '--word-list', dest='word_list',
+                        action='store_true',
+                        help='If given, write the vocabulary of '
+                             'this subcorpus to a file with the name '
+                             '"TERM-WIDTH-CORPUS.wordlist".')
 
     return parser.parse_args(argv)
 
@@ -97,7 +104,19 @@ def main(argv=None):
         except:
             print('unable to load corpus {}. skipping.'.format(name))
         else:
-            focus_corpus(name, corpus, args.term, args.n)
+            focused = focus_corpus(name, corpus, args.term, args.n)
+            if args.word_list:
+                word_list = set()
+                for doc in focused.data['focus_tokens']:
+                    word_list |= set(doc)
+
+                filename = '{}-{}-{}.wordlist'.format(
+                    args.term, args.n, name,
+                )
+                print('Writing wordlist to {}'.format(filename))
+                with open(filename, 'w') as fout:
+                    for word in sorted(word_list):
+                        fout.write(word + '\n')
 
 
 if __name__ == '__main__':
