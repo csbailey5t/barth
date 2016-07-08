@@ -14,6 +14,7 @@ import os
 
 import nltk
 from nltk.corpus import stopwords
+import numpy as np
 import pandas
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
@@ -216,6 +217,24 @@ class CsvCorpus:
         )
 
         return cdf
+
+    def percent_vectorize(self, **kwargs):
+        df = self.tokenize()
+        corpus = [' '.join(doc) for doc in df['tokens']]
+        cv = CountVectorizer(**kwargs)
+
+        raw_counts = cv.fit_transform(corpus)
+        feature_count = len(cv.vocabulary_)
+        sums = np.array([[row.sum()] * feature_count for row in raw_counts])
+        percentages = raw_counts / sums
+
+        pdf = pandas.DataFrame(
+            percentages,
+            columns=cv.get_feature_names(),
+            index=df.index,
+        )
+
+        return pdf
 
     def tfidf_vectorize(self, **kwargs):
         df = self.tokenize()
