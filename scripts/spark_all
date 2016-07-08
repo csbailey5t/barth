@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# usage: spark_all corpus.csv term
+
+# You need to make sure that PYTHONPATH and PATH are set correctly to find the
+# barth and to include the scripts directories.
+
+corpus=$1
+shift
+terms=$*
+
+for term in $terms; do
+	echo $term
+	frequency.py --corpus $corpus --query=$term --counts raw        --values 2> /dev/null | spark
+	frequency.py --corpus $corpus --query=$term --counts percentage --values 2> /dev/null | spark
+	frequency.py --corpus $corpus --query=$term --counts tfidf      --values 2> /dev/null | spark
+	echo
+done
