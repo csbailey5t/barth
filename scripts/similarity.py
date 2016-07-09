@@ -61,17 +61,25 @@ def make_samples(corpus, num_samples, sample_size, min_freq):
         ]
 
     # Create token vectors.
-    all_tokens = list(enumerate(sorted(list(token_set))))
-    for name, tokens in token_groups.items():
-        samples[name] = []
-        for _ in range(num_samples):
-            start = random.randrange(len(tokens) - sample_size)
-            s_tokens = tokens[start:start+sample_size]
-            counts = collections.Counter(s_tokens)
-            v_array = [0] * len(s_tokens)
-            for i, t in all_tokens:
-                v_array[i] = counts[t]
+    min_corpus_count = min(len(tokens) for tokens in token_groups.values())
+    sample_size, _ = divmod(min_corpus_count, num_samples)
+    all_tokens = {t: i for (i, t) in enumerate(sorted(list(token_set)))}
 
+    for name, tokens in token_groups.items():
+        name_groups = [
+            tokens[i:i+sample_size] for i in range(0, len(tokens), sample_size)
+        ]
+        if len(name_groups) > num_samples:
+            name_groups = random.sample(name_groups, num_samples)
+        random.shuffle(name_groups)
+
+        samples[name] = []
+        for s_tokens in name_groups:
+            counts = collections.Counter(s_tokens)
+            v_array = [0] * len(all_tokens)
+            for t, c in counts.items():
+                i = all_tokens[t]
+                v_array[i] = c
             samples[name].append(np.array(v_array))
 
     return (all_tokens, samples)
@@ -81,9 +89,8 @@ def make_pairs(all_tokens, samples):
     """Return pairs of samples from each tag."""
     print('make-pairs')
     for i in range(len(all_tokens)):
-        pair = {}
-        for k, values in samples.items():
-            pair[k] = np.array([v[i] for v in values])
+        pair = {k: np.array([v[i] for v in values])
+                for k, values in samples.items()}
         yield pair
 
 
@@ -185,13 +192,14 @@ def main(argv=None):
 
     print('wilcoxon')
     output_rows = []
-    for token, pair in zip(all_tokens, make_pairs(all_tokens, samples)):
-        if word_list is None or token[1] in word_list:
+    tokens = sorted(all_tokens.keys(), key=all_tokens.get)
+    for token, pair in zip(tokens, make_pairs(all_tokens, samples)):
+        if word_list is None or token in word_list:
             w = wilcoxon(pair, args.zero_method)
             if w is not None:
-                t = token[1].split('/')[0]
+                t = token.split('/')[0]
                 output_rows.append((
-                    token[1],
+                    token,
                     w.statistic,
                     w.pvalue,
                     '\n'.join(sparklines(counts[t])),
