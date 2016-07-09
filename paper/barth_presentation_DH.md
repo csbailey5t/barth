@@ -87,10 +87,6 @@ Our topic models of the whole corpus and the segmented corpus provide data that 
 
 Similar to our topic models of the whole corpus, each document is a single paragraph of the *Dogmatics*, which is the most interpretively meaningful unit in Barth scholarship. We also ran the model with 20 topics to directly mirror the model of the full corpus. We find results similar to our original model: several topics are noticeably more significant in paragraphs prior to paragraph 33, the essential election paragraph, and several topics are noticeably more significant in paragraphs after paragraph 33, especially in paragraphs from 57 on, which are part of Barth's doctrine of reconciliation, often considered the home of his mature Trinitarian theology.
 
-Figure: Topic 0 from focused corpus
-
-Topic 0: christ church faith word revelation holy scripture spirit human truth name therefore authority fact religion apostles speak witness prophets power
-
 Figure: Topic 3 from focused corpus
 
 Topic 3: god revelation christ father son word jesus testament reality new also statement nazareth name thus fact according found gospel historical
