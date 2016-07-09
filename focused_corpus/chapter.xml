@@ -1,0 +1,843 @@
+<?xml version='1.0' ?>
+<topics>
+  <topic id="0" alpha="0.25" totalTokens="10621" titles="holy/jj spirit/nn, holy/jj scripture/nn, church/nn church/nn, christ/pn, faith/pn, word/nn, revelation/nn, human/jj, truth/nn, name/nn">
+	<word weight="0.1037567084078712" count="1102">christ/pn</word>
+	<word weight="0.08398455889275963" count="892">church/nn</word>
+	<word weight="0.03624894077770455" count="385">faith/pn</word>
+	<word weight="0.02702193767065248" count="287">word/nn</word>
+	<word weight="0.02560964127671594" count="272">revelation/nn</word>
+	<word weight="0.023726579418133886" count="252">holy/jj</word>
+	<word weight="0.01826570002824593" count="194">scripture/nn</word>
+	<word weight="0.01487618868279823" count="158">spirit/nn</word>
+	<word weight="0.014122963939365409" count="150">human/jj</word>
+	<word weight="0.013369739195932586" count="142">truth/nn</word>
+	<word weight="0.011580830430279635" count="123">name/nn</word>
+	<word weight="0.011580830430279635" count="123">therefore/rb</word>
+	<word weight="0.011204218058563224" count="119">authority/nn</word>
+	<word weight="0.010168534036343093" count="108">fact/nn</word>
+	<word weight="0.009227003107052066" count="98">religion/nn</word>
+	<word weight="0.008756237642406553" count="93">apostles/nns</word>
+	<word weight="0.008567931456548347" count="91">speak/vb</word>
+	<word weight="0.008379625270690142" count="89">witness/nn</word>
+	<word weight="0.00800301289897373" count="85">prophets/nns</word>
+	<word weight="0.007249788155540909" count="77">power/nn</word>
+	<phrase weight="0.0248" count="31">holy/jj spirit/nn</phrase>
+	<phrase weight="0.0176" count="22">holy/jj scripture/nn</phrase>
+	<phrase weight="0.0168" count="21">church/nn church/nn</phrase>
+	<phrase weight="0.0144" count="18">church/nn christ/pn</phrase>
+	<phrase weight="0.012" count="15">prophets/nns apostles/nns</phrase>
+	<phrase weight="0.008" count="10">name/nn christ/pn</phrase>
+	<phrase weight="0.0064" count="8">natural/jj theology/nn</phrase>
+	<phrase weight="0.0056" count="7">revelation/nn christ/pn</phrase>
+	<phrase weight="0.0056" count="7">faith/pn faith/pn</phrase>
+	<phrase weight="0.0048" count="6">holy/jj ghost/nn</phrase>
+	<phrase weight="0.004" count="5">fact/nn christ/pn</phrase>
+	<phrase weight="0.0032" count="4">faith/pn christ/pn</phrase>
+	<phrase weight="0.0032" count="4">bible/nn church/nn</phrase>
+	<phrase weight="0.0032" count="4">resurrection/nn christ/pn</phrase>
+	<phrase weight="0.0032" count="4">human/jj nature/nn</phrase>
+	<phrase weight="0.0032" count="4">master/nn unavoidably/rb</phrase>
+	<phrase weight="0.0032" count="4">faith/pn church/nn</phrase>
+	<phrase weight="0.0032" count="4">presence/nn christ/pn</phrase>
+	<phrase weight="0.0032" count="4">earthly/jj body/nn</phrase>
+	<phrase weight="0.0032" count="4">christ/pn church/nn</phrase>
+  </topic>
+  <topic id="1" alpha="0.25" totalTokens="33806" titles="one/cd another/dt, cannot/md*, must/md, lord/nn, may/pn, point/nn, given/vbn, sense/nn, said/vbd, new/jj">
+	<word weight="0.06359817783825357" count="2150">one/cd</word>
+	<word weight="0.022362894160799857" count="756">cannot/md*</word>
+	<word weight="0.021475477725847483" count="726">must/md</word>
+	<word weight="0.019966869786428445" count="675">lord/nn</word>
+	<word weight="0.01816245636869195" count="614">may/pn</word>
+	<word weight="0.015411465420339585" count="521">point/nn</word>
+	<word weight="0.014316985150564988" count="484">given/vbn</word>
+	<word weight="0.012571732828491984" count="425">sense/nn</word>
+	<word weight="0.012009702419688812" count="406">said/vbd</word>
+	<word weight="0.01109270543690469" count="375">new/jj</word>
+	<word weight="0.010767319410755488" count="364">case/pn</word>
+	<word weight="0.010589836123765012" count="358">really/rb</word>
+	<word weight="0.010530675028101521" count="356">already/rb</word>
+	<word weight="0.010116547358457078" count="342">self/nn</word>
+	<word weight="0.009524936401822162" count="322">whose/wp$</word>
+	<word weight="0.009436194758326924" count="319">without/in</word>
+	<word weight="0.00940661421049518" count="318">upon/in</word>
+	<word weight="0.008637519966869787" count="292">reason/nn</word>
+	<word weight="0.008371295036384074" count="283">see/pn</word>
+	<word weight="0.008016328462403124" count="271">course/nn</word>
+	<phrase weight="0.01021327726043857" count="34">one/cd another/dt</phrase>
+	<phrase weight="0.004806248122559327" count="16">point/nn view/nn</phrase>
+	<phrase weight="0.0039050765995794533" count="13">thou/ppss hast/hv</phrase>
+	<phrase weight="0.0033042955842595375" count="11">let/vb alone/rb</phrase>
+	<phrase weight="0.0030039050765995794" count="10">one/cd one/cd</phrase>
+	<phrase weight="0.0030039050765995794" count="10">art/pn thou/ppss</phrase>
+	<phrase weight="0.0027035145689396217" count="9">one/cd whose/wp$</phrase>
+	<phrase weight="0.0027035145689396217" count="9">lord/nn head/nn</phrase>
+	<phrase weight="0.0027035145689396217" count="9">must/md said/vbd</phrase>
+	<phrase weight="0.0024031240612796636" count="8">must/md ask/vb</phrase>
+	<phrase weight="0.0024031240612796636" count="8">self/nn evidently/rb</phrase>
+	<phrase weight="0.0024031240612796636" count="8">self/nn giving/vbg</phrase>
+	<phrase weight="0.0024031240612796636" count="8">see/pn understand/vb</phrase>
+	<phrase weight="0.0024031240612796636" count="8">seek/vb find/vb</phrase>
+	<phrase weight="0.0021027335536197055" count="7">may/pn find/vb</phrase>
+	<phrase weight="0.0021027335536197055" count="7">point/nn must/md</phrase>
+	<phrase weight="0.0021027335536197055" count="7">died/vbd cross/vb</phrase>
+	<phrase weight="0.0021027335536197055" count="7">rightly/rb understood/vbn</phrase>
+	<phrase weight="0.0018023430459597476" count="6">lord/nn must/md</phrase>
+	<phrase weight="0.0018023430459597476" count="6">may/pn must/md</phrase>
+  </topic>
+  <topic id="2" alpha="0.25" totalTokens="7985" titles="israel/pn, christ/pn, church/nn, man/nn, people/nns, faith/pn, community/nn, jesus/pn, election/nn, jews/nns">
+	<word weight="0.07601753287413901" count="607">israel/pn</word>
+	<word weight="0.042579837194740136" count="340">christ/pn</word>
+	<word weight="0.03706950532247965" count="296">church/nn</word>
+	<word weight="0.029805886036318098" count="238">man/nn</word>
+	<word weight="0.02617407639323732" count="209">people/nns</word>
+	<word weight="0.026048841577958674" count="208">faith/pn</word>
+	<word weight="0.022542266750156543" count="180">community/nn</word>
+	<word weight="0.021289918597370068" count="170">jesus/pn</word>
+	<word weight="0.020413274890419535" count="163">election/nn</word>
+	<word weight="0.0171571696931747" count="137">jews/nns</word>
+	<word weight="0.015904821540388227" count="127">world/nn</word>
+	<word weight="0.013400125234815279" count="107">resurrection/nn</word>
+	<word weight="0.012648716343143395" count="101">elected/vbn</word>
+	<word weight="0.012273011897307451" count="98">way/pn</word>
+	<word weight="0.012022542266750157" count="96">fulfilment/nn</word>
+	<word weight="0.012022542266750157" count="96">mercy/pn</word>
+	<word weight="0.01139636819035692" count="91">form/nn</word>
+	<word weight="0.011271133375078271" count="90">gentiles/vbz</word>
+	<word weight="0.011271133375078271" count="90">promise/nn</word>
+	<word weight="0.009768315591734503" count="78">dead/jj</word>
+	<phrase weight="0.02513227513227513" count="19">jews/nns gentiles/vbz</phrase>
+	<phrase weight="0.022486772486772486" count="17">people/nns israel/pn</phrase>
+	<phrase weight="0.015873015873015872" count="12">messiah/nn israel/pn</phrase>
+	<phrase weight="0.009259259259259259" count="7">israel/pn church/nn</phrase>
+	<phrase weight="0.007936507936507936" count="6">israel/pn israel/pn</phrase>
+	<phrase weight="0.006613756613756613" count="5">people/nns people/nns</phrase>
+	<phrase weight="0.005291005291005291" count="4">whole/jj community/nn</phrase>
+	<phrase weight="0.005291005291005291" count="4">whole/jj world/nn</phrase>
+	<phrase weight="0.005291005291005291" count="4">resurrection/nn christ/pn</phrase>
+	<phrase weight="0.005291005291005291" count="4">elected/vbn community/nn</phrase>
+	<phrase weight="0.005291005291005291" count="4">singular/jj plural/nn</phrase>
+	<phrase weight="0.005291005291005291" count="4">israel/pn people/nns</phrase>
+	<phrase weight="0.003968253968253968" count="3">israel/pn gentiles/vbz</phrase>
+	<phrase weight="0.003968253968253968" count="3">fulfilment/nn promise/nn</phrase>
+	<phrase weight="0.003968253968253968" count="3">remnant/nn israel/pn</phrase>
+	<phrase weight="0.003968253968253968" count="3">election/nn israel/pn</phrase>
+	<phrase weight="0.003968253968253968" count="3">israel/pn messiah/nn</phrase>
+	<phrase weight="0.003968253968253968" count="3">form/nn israel/pn</phrase>
+	<phrase weight="0.003968253968253968" count="3">election/nn christ/pn</phrase>
+	<phrase weight="0.003968253968253968" count="3">abraham/pn isaac/pn jacob/pn</phrase>
+  </topic>
+  <topic id="3" alpha="0.25" totalTokens="12492" titles="new/jj testament/nn, god/nn, revelation/nn, christ/pn, father/nn, son/pn, word/nn, jesus/pn, reality/nn, also/rb">
+	<word weight="0.06948447006083894" count="868">god/nn</word>
+	<word weight="0.04610951008645533" count="576">revelation/nn</word>
+	<word weight="0.04050592379122638" count="506">christ/pn</word>
+	<word weight="0.04002561639449247" count="500">father/nn</word>
+	<word weight="0.03434197886647455" count="429">son/pn</word>
+	<word weight="0.03218059558117195" count="402">word/nn</word>
+	<word weight="0.028658341338456614" count="358">jesus/pn</word>
+	<word weight="0.02489593339737432" count="311">testament/nn</word>
+	<word weight="0.02313480627601665" count="289">reality/nn</word>
+	<word weight="0.01905219340377842" count="238">new/jj</word>
+	<word weight="0.01681075888568684" count="210">also/rb</word>
+	<word weight="0.013048350944604548" count="163">statement/nn</word>
+	<word weight="0.011607428754402817" count="145">nazareth/nn</word>
+	<word weight="0.010886967659301952" count="136">name/nn</word>
+	<word weight="0.00888568683957733" count="111">thus/rb</word>
+	<word weight="0.0076048671149535705" count="95">fact/nn</word>
+	<word weight="0.006964457252641691" count="87">according/in</word>
+	<word weight="0.0067243035542747355" count="84">found/vbd</word>
+	<word weight="0.006484149855907781" count="81">gospel/nn</word>
+	<word weight="0.006404098623118796" count="80">historical/jj</word>
+	<phrase weight="0.03142857142857143" count="44">new/jj testament/nn</phrase>
+	<phrase weight="0.013571428571428571" count="19">word/nn god/nn</phrase>
+	<phrase weight="0.012857142857142857" count="18">father/nn father/nn</phrase>
+	<phrase weight="0.012857142857142857" count="18">son/pn god/nn</phrase>
+	<phrase weight="0.007142857142857143" count="10">jesus/pn christ/pn</phrase>
+	<phrase weight="0.0064285714285714285" count="9">father/nn son/pn</phrase>
+	<phrase weight="0.005714285714285714" count="8">god/nn revelation/nn</phrase>
+	<phrase weight="0.005714285714285714" count="8">god/nn father/nn</phrase>
+	<phrase weight="0.005" count="7">revelation/nn father/nn</phrase>
+	<phrase weight="0.004285714285714286" count="6">religious/jj personality/nn</phrase>
+	<phrase weight="0.0035714285714285713" count="5">reality/nn revelation/nn</phrase>
+	<phrase weight="0.0035714285714285713" count="5">line/nn thought/vbd</phrase>
+	<phrase weight="0.0035714285714285713" count="5">word/nn son/pn</phrase>
+	<phrase weight="0.0035714285714285713" count="5">god/nn son/pn</phrase>
+	<phrase weight="0.0035714285714285713" count="5">son/pn son/pn</phrase>
+	<phrase weight="0.002857142857142857" count="4">son/pn father/nn</phrase>
+	<phrase weight="0.002857142857142857" count="4">reality/nn christ/pn</phrase>
+	<phrase weight="0.002857142857142857" count="4">god/nn word/nn</phrase>
+	<phrase weight="0.002857142857142857" count="4">reality/nn jesus/pn</phrase>
+	<phrase weight="0.002857142857142857" count="4">god/nn found/vbd</phrase>
+  </topic>
+  <topic id="4" alpha="0.25" totalTokens="4338" titles="love/pn, father/nn, neighbour/nn, woman/nn, commandment/nn, covenant/nn, prayer/nn, world/nn, lordship/nn, children/nns">
+	<word weight="0.07676348547717843" count="333">love/pn</word>
+	<word weight="0.034578146611341634" count="150">father/nn</word>
+	<word weight="0.02627939142461964" count="114">neighbour/nn</word>
+	<word weight="0.016828031350852927" count="73">woman/nn</word>
+	<word weight="0.015675426463808206" count="68">commandment/nn</word>
+	<word weight="0.01475334255417243" count="64">covenant/nn</word>
+	<word weight="0.013600737667127709" count="59">prayer/nn</word>
+	<word weight="0.013600737667127709" count="59">world/nn</word>
+	<word weight="0.011756569847856155" count="51">lordship/nn</word>
+	<word weight="0.009220839096357769" count="40">children/nns</word>
+	<word weight="0.009220839096357769" count="40">obedience/nn</word>
+	<word weight="0.008990318118948824" count="39">brother/nn</word>
+	<word weight="0.00875979714153988" count="38">prays/nns</word>
+	<word weight="0.00875979714153988" count="38">name/nn</word>
+	<word weight="0.008529276164130935" count="37">service/nn</word>
+	<word weight="0.008529276164130935" count="37">activity/nn</word>
+	<word weight="0.008068234209313048" count="35">asking/vbg</word>
+	<word weight="0.007837713231904103" count="34">loved/vbd</word>
+	<word weight="0.007837713231904103" count="34">praise/nn</word>
+	<word weight="0.007837713231904103" count="34">earthly/jj</word>
+	<phrase weight="0.026392961876832845" count="9">commandment/nn love/pn</phrase>
+	<phrase weight="0.020527859237536656" count="7">male/nn female/nn</phrase>
+	<phrase weight="0.017595307917888565" count="6">twelve/cd year/nn</phrase>
+	<phrase weight="0.01466275659824047" count="5">love/pn neighbour/nn</phrase>
+	<phrase weight="0.011730205278592375" count="4">father/nn father/nn</phrase>
+	<phrase weight="0.011730205278592375" count="4">love/pn love/pn</phrase>
+	<phrase weight="0.008797653958944282" count="3">neighbour/nn neighbour/nn</phrase>
+	<phrase weight="0.008797653958944282" count="3">prayer/nn prayer/nn</phrase>
+	<phrase weight="0.008797653958944282" count="3">visibly/rb invisibly/rb</phrase>
+	<phrase weight="0.008797653958944282" count="3">archetypal/nn love/pn</phrase>
+	<phrase weight="0.005865102639296188" count="2">submission/nn individual/jj</phrase>
+	<phrase weight="0.005865102639296188" count="2">necessarily/ql prays/nns</phrase>
+	<phrase weight="0.005865102639296188" count="2">love/pn love/pn relatives/nns</phrase>
+	<phrase weight="0.005865102639296188" count="2">neighbour/nn brother/nn</phrase>
+	<phrase weight="0.005865102639296188" count="2">advocacy/nn intercession/nn</phrase>
+	<phrase weight="0.005865102639296188" count="2">priestly/jj advocacy/nn intercession/nn</phrase>
+	<phrase weight="0.005865102639296188" count="2">pardoned/vbn henceforth/rb</phrase>
+	<phrase weight="0.005865102639296188" count="2">obedience/nn love/pn</phrase>
+	<phrase weight="0.005865102639296188" count="2">heaven/nn earth/nn</phrase>
+	<phrase weight="0.005865102639296188" count="2">father/nn heaven/nn</phrase>
+  </topic>
+  <topic id="5" alpha="0.25" totalTokens="23963" titles="life/nn, also/rb, men/nns, freedom/nn, even/rb, relation/nn, basis/nn, person/nn, always/rb, nothing/pn">
+	<word weight="0.041021574928014025" count="983">life/nn</word>
+	<word weight="0.03785001877895088" count="907">also/rb</word>
+	<word weight="0.02136627300421483" count="512">men/nns</word>
+	<word weight="0.018612026874765264" count="446">freedom/nn</word>
+	<word weight="0.017735675833576763" count="425">even/rb</word>
+	<word weight="0.013938154655093269" count="334">relation/nn</word>
+	<word weight="0.013729499645286483" count="329">basis/nn</word>
+	<word weight="0.013520844635479697" count="324">person/nn</word>
+	<word weight="0.0129366106080207" count="310">always/rb</word>
+	<word weight="0.011434294537411844" count="274">nothing/pn</word>
+	<word weight="0.011434294537411844" count="274">would/md</word>
+	<word weight="0.010808329507991488" count="259">still/rb</word>
+	<word weight="0.009931978466802988" count="238">means/nns</word>
+	<word weight="0.009723323456996202" count="233">indeed/rb</word>
+	<word weight="0.009264282435421274" count="222">make/vb</word>
+	<word weight="0.008721779409923632" count="209">great/jj</word>
+	<word weight="0.008429662396194132" count="202">virtue/nn</word>
+	<word weight="0.008346200392271418" count="200">really/rb</word>
+	<word weight="0.007970621374619204" count="191">face/nn</word>
+	<word weight="0.00788715937069649" count="189">glory/pn</word>
+	<phrase weight="0.01071630005640158" count="19">nothing/pn whatever/wdt</phrase>
+	<phrase weight="0.006204173716864072" count="11">life/nn life/nn</phrase>
+	<phrase weight="0.0056401579244218835" count="10">nothing/pn less/ap</phrase>
+	<phrase weight="0.003948110547095319" count="7">freedom/nn freedom/nn</phrase>
+	<phrase weight="0.00338409475465313" count="6">life/nn also/rb</phrase>
+	<phrase weight="0.0028200789622109417" count="5">men/nns men/nns</phrase>
+	<phrase weight="0.0028200789622109417" count="5">make/vb use/nn</phrase>
+	<phrase weight="0.0028200789622109417" count="5">would/md necessarily/rb</phrase>
+	<phrase weight="0.0028200789622109417" count="5">able/jj willing/jj</phrase>
+	<phrase weight="0.0022560631697687537" count="4">knows/vbz nothing/pn</phrase>
+	<phrase weight="0.0022560631697687537" count="4">stand/vb outside/rb</phrase>
+	<phrase weight="0.0022560631697687537" count="4">relation/nn also/rb</phrase>
+	<phrase weight="0.0022560631697687537" count="4">necessarily/rb excluded/vbn</phrase>
+	<phrase weight="0.0022560631697687537" count="4">glory/pn follow/vb</phrase>
+	<phrase weight="0.0022560631697687537" count="4">nothing/pn else/pn</phrase>
+	<phrase weight="0.001692047377326565" count="3">loves/vbz reckons/vbz</phrase>
+	<phrase weight="0.001692047377326565" count="3">still/rb happen/vb</phrase>
+	<phrase weight="0.001692047377326565" count="3">men/nns means/nns</phrase>
+	<phrase weight="0.001692047377326565" count="3">face/nn face/nn</phrase>
+	<phrase weight="0.001692047377326565" count="3">make/vb use/nn freedom/nn</phrase>
+  </topic>
+  <topic id="6" alpha="0.25" totalTokens="6411" titles="holy/jj spirit/nn, new/jj, testament/nn, flesh/nn, body/nn, human/jj, person/nn, life/nn, soul/nn, relationship/nn">
+	<word weight="0.04929028232725004" count="316">spirit/nn</word>
+	<word weight="0.025892996412416158" count="166">new/jj</word>
+	<word weight="0.019965683980658244" count="128">testament/nn</word>
+	<word weight="0.019965683980658244" count="128">holy/jj</word>
+	<word weight="0.017158009670878178" count="110">flesh/nn</word>
+	<word weight="0.016534082046482608" count="106">body/nn</word>
+	<word weight="0.014974262985493684" count="96">human/jj</word>
+	<word weight="0.014350335361098112" count="92">person/nn</word>
+	<word weight="0.013414443924504757" count="86">life/nn</word>
+	<word weight="0.012010606769614724" count="77">relationship/nn</word>
+	<word weight="0.012010606769614724" count="77">soul/nn</word>
+	<word weight="0.010606769614724692" count="68">story/nn</word>
+	<word weight="0.009670878178131337" count="62">upon/in</word>
+	<word weight="0.009358914365933552" count="60">two/cd</word>
+	<word weight="0.00811105911714241" count="52">mary/pn</word>
+	<word weight="0.00811105911714241" count="52">mystery/nn</word>
+	<word weight="0.00811105911714241" count="52">mother/nn</word>
+	<word weight="0.007955077211043519" count="51">picture/nn</word>
+	<word weight="0.007955077211043519" count="51">sign/nn</word>
+	<word weight="0.007643113398845734" count="49">rom/nn</word>
+	<phrase weight="0.05081967213114754" count="31">holy/jj spirit/nn</phrase>
+	<phrase weight="0.022950819672131147" count="14">new/jj testament/nn</phrase>
+	<phrase weight="0.01639344262295082" count="10">soul/nn body/nn</phrase>
+	<phrase weight="0.011475409836065573" count="7">virgin/nn birth/nn</phrase>
+	<phrase weight="0.009836065573770493" count="6">virgin/nn mary/pn</phrase>
+	<phrase weight="0.009836065573770493" count="6">spirit/nn spirit/nn</phrase>
+	<phrase weight="0.00819672131147541" count="5">oneness/nn wholeness/nn</phrase>
+	<phrase weight="0.00819672131147541" count="5">natus/nns virgine/nn</phrase>
+	<phrase weight="0.006557377049180328" count="4">giver/nn holy/jj spirit/nn</phrase>
+	<phrase weight="0.006557377049180328" count="4">comparable/jj relationship/nn</phrase>
+	<phrase weight="0.006557377049180328" count="4">conceptus/nns spiritu/nn sancto/nn</phrase>
+	<phrase weight="0.004918032786885246" count="3">personal/jj life/nn</phrase>
+	<phrase weight="0.004918032786885246" count="3">difficulties/nns easy/jj</phrase>
+	<phrase weight="0.004918032786885246" count="3">holy/jj ghost/nn</phrase>
+	<phrase weight="0.004918032786885246" count="3">baptism/nn jordan/pn</phrase>
+	<phrase weight="0.004918032786885246" count="3">psycho/nn physical/jj</phrase>
+	<phrase weight="0.004918032786885246" count="3">mystery/nn person/nn</phrase>
+	<phrase weight="0.003278688524590164" count="2">signified/vbd virgin/nn</phrase>
+	<phrase weight="0.003278688524590164" count="2">much/ap seldom/rb</phrase>
+	<phrase weight="0.003278688524590164" count="2">soul/nn soul/nn</phrase>
+  </topic>
+  <topic id="7" alpha="0.25" totalTokens="40523" titles="jesus/pn jesus/pn, quite/ql different/jj, answer/nn question/nn, man/nn, therefore/rb, first/rb, fact/nn, even/rb, existence/nn, history/nn">
+	<word weight="0.04365422105964514" count="1769">jesus/pn</word>
+	<word weight="0.03457295856673988" count="1401">man/nn</word>
+	<word weight="0.025047503886681637" count="1015">therefore/rb</word>
+	<word weight="0.020556227327690448" count="833">first/rb</word>
+	<word weight="0.019963971078153148" count="809">fact/nn</word>
+	<word weight="0.019791229672038103" count="802">even/rb</word>
+	<word weight="0.01643511092466007" count="666">existence/nn</word>
+	<word weight="0.015299953113046912" count="620">history/nn</word>
+	<word weight="0.013547861708165732" count="549">question/nn</word>
+	<word weight="0.009994324210941935" count="405">merely/rb</word>
+	<word weight="0.009895614836019051" count="401">true/jj</word>
+	<word weight="0.009796905461096168" count="397">seen/vbn</word>
+	<word weight="0.009722873429904005" count="394">must/md</word>
+	<word weight="0.009698196086173285" count="393">quite/ql</word>
+	<word weight="0.00955013202378896" count="387">content/nn</word>
+	<word weight="0.009476099992596796" count="384">say/pn</word>
+	<word weight="0.009179971867828146" count="372">different/jj</word>
+	<word weight="0.008538360930829405" count="346">speak/vb</word>
+	<word weight="0.008513683587098685" count="345">way/pn</word>
+	<word weight="0.00836561952471436" count="339">know/vb</word>
+	<phrase weight="0.008374490015031136" count="39">jesus/pn jesus/pn</phrase>
+	<phrase weight="0.005797723856560017" count="27">quite/ql different/jj</phrase>
+	<phrase weight="0.005153532316942238" count="24">answer/nn question/nn</phrase>
+	<phrase weight="0.004294610264118532" count="20">first/rb instance/nn</phrase>
+	<phrase weight="0.0040798797509126045" count="19">man/nn jesus/pn</phrase>
+	<phrase weight="0.003006227184882972" count="14">question/nn whether/cs</phrase>
+	<phrase weight="0.002576766158471119" count="12">quite/ql simply/rb</phrase>
+	<phrase weight="0.002147305132059266" count="10">take/vb seriously/rb</phrase>
+	<phrase weight="0.0017178441056474125" count="8">words/nns acts/nns</phrase>
+	<phrase weight="0.0017178441056474125" count="8">existence/nn jesus/pn</phrase>
+	<phrase weight="0.0017178441056474125" count="8">first/rb form/vb</phrase>
+	<phrase weight="0.001503113592441486" count="7">man/nn man/nn</phrase>
+	<phrase weight="0.001503113592441486" count="7">take/vb part/nn</phrase>
+	<phrase weight="0.001503113592441486" count="7">brought/vbd light/jj</phrase>
+	<phrase weight="0.001503113592441486" count="7">fact/nn jesus/pn</phrase>
+	<phrase weight="0.0012883830792355595" count="6">history/nn history/nn</phrase>
+	<phrase weight="0.0012883830792355595" count="6">among/in men/nns</phrase>
+	<phrase weight="0.0012883830792355595" count="6">take/vb account/nn</phrase>
+	<phrase weight="0.0012883830792355595" count="6">makes/vbz known/vbn</phrase>
+	<phrase weight="0.0012883830792355595" count="6">say/pn concerning/in</phrase>
+  </topic>
+  <topic id="8" alpha="0.25" totalTokens="15758" titles="holy/jj spirit/nn, christian/pn community/nn, christ/pn, world/nn, power/nn, lord/nn, living/vbg, witness/nn, body/nn, therefore/rb">
+	<word weight="0.05850996319329864" count="922">community/nn</word>
+	<word weight="0.04099505013326564" count="646">christ/pn</word>
+	<word weight="0.03680670135804036" count="580">christian/pn</word>
+	<word weight="0.03642594237847443" count="574">world/nn</word>
+	<word weight="0.020878284046198757" count="329">spirit/nn</word>
+	<word weight="0.01795913186952659" count="283">power/nn</word>
+	<word weight="0.015801497651986292" count="249">holy/jj</word>
+	<word weight="0.01161314887676101" count="183">lord/nn</word>
+	<word weight="0.011295849727122732" count="178">living/vbg</word>
+	<word weight="0.011105470237339763" count="175">witness/nn</word>
+	<word weight="0.010534331767990861" count="166">body/nn</word>
+	<word weight="0.010343952278207894" count="163">therefore/rb</word>
+	<word weight="0.010217032618352584" count="161">thus/rb</word>
+	<word weight="0.009518974489148369" count="150">men/nns</word>
+	<word weight="0.009392054829293058" count="148">work/nn</word>
+	<word weight="0.00888437618987181" count="140">occurrence/nn</word>
+	<word weight="0.008820916359944156" count="139">may/pn</word>
+	<word weight="0.008693996700088844" count="137">history/nn</word>
+	<word weight="0.008630536870161187" count="136">people/nns</word>
+	<word weight="0.008630536870161187" count="136">existence/nn</word>
+	<phrase weight="0.027375201288244767" count="51">holy/jj spirit/nn</phrase>
+	<phrase weight="0.013419216317767043" count="25">christian/pn community/nn</phrase>
+	<phrase weight="0.008051529790660225" count="15">world/nn occurrence/nn</phrase>
+	<phrase weight="0.006977992485238862" count="13">community/nn christ/pn</phrase>
+	<phrase weight="0.004830917874396135" count="9">power/nn holy/jj spirit/nn</phrase>
+	<phrase weight="0.004830917874396135" count="9">community/nn community/nn</phrase>
+	<phrase weight="0.0042941492216854536" count="8">vice/nn versa/rb</phrase>
+	<phrase weight="0.003757380568974772" count="7">provisional/jj representation/nn</phrase>
+	<phrase weight="0.003757380568974772" count="7">community/nn members/nns</phrase>
+	<phrase weight="0.003757380568974772" count="7">ministry/nn witness/nn</phrase>
+	<phrase weight="0.00322061191626409" count="6">power/nn holy/jj</phrase>
+	<phrase weight="0.00322061191626409" count="6">reality/nn world/nn</phrase>
+	<phrase weight="0.00322061191626409" count="6">christ/pn community/nn</phrase>
+	<phrase weight="0.0026838432635534087" count="5">world/nn community/nn</phrase>
+	<phrase weight="0.0026838432635534087" count="5">earthly/jj historical/jj</phrase>
+	<phrase weight="0.0026838432635534087" count="5">community/nn world/nn</phrase>
+	<phrase weight="0.0026838432635534087" count="5">head/nn body/nn</phrase>
+	<phrase weight="0.0026838432635534087" count="5">christian/pn community/nn christian/pn</phrase>
+	<phrase weight="0.0026838432635534087" count="5">community/nn body/nn</phrase>
+	<phrase weight="0.0021470746108427268" count="4">every/at knee/nn</phrase>
+  </topic>
+  <topic id="9" alpha="0.25" totalTokens="13211" titles="prophecy/nn christ/pn, word/nn, history/nn, light/nn, revelation/nn, world/nn, work/nn, thus/rb, witness/nn, yet/rb">
+	<word weight="0.08076602830974189" count="1067">christ/pn</word>
+	<word weight="0.041480584361516915" count="548">word/nn</word>
+	<word weight="0.02384376655817122" count="315">history/nn</word>
+	<word weight="0.02240557111497994" count="296">light/nn</word>
+	<word weight="0.01877223525849671" count="248">prophecy/nn</word>
+	<word weight="0.015971538869124214" count="211">revelation/nn</word>
+	<word weight="0.015668760881083946" count="207">world/nn</word>
+	<word weight="0.01498751040799334" count="198">work/nn</word>
+	<word weight="0.01468473241995307" count="194">thus/rb</word>
+	<word weight="0.014306259934902733" count="189">witness/nn</word>
+	<word weight="0.013473620467791991" count="178">yet/rb</word>
+	<word weight="0.012565286503671183" count="166">life/nn</word>
+	<word weight="0.012489592006661115" count="165">action/nn</word>
+	<word weight="0.012262508515630913" count="162">one/cd</word>
+	<word weight="0.011808341533570509" count="156">prophetic/jj</word>
+	<word weight="0.01059722958140943" count="140">knowledge/nn</word>
+	<word weight="0.009840284611308758" count="130">form/nn</word>
+	<word weight="0.009386117629248354" count="124">reconciliation/nn</word>
+	<word weight="0.00893195064718795" count="118">spoken/vbn</word>
+	<word weight="0.008856256150177882" count="117">living/vbg</word>
+	<phrase weight="0.013945380592678676" count="24">prophecy/nn christ/pn</phrase>
+	<phrase weight="0.008134805345729227" count="14">prophetic/jj work/nn</phrase>
+	<phrase weight="0.006391632771644393" count="11">living/vbg christ/pn</phrase>
+	<phrase weight="0.005810575246949448" count="10">prophetic/jj office/nn</phrase>
+	<phrase weight="0.005229517722254503" count="9">word/nn spoken/vbn</phrase>
+	<phrase weight="0.005229517722254503" count="9">non/fw-* christians/nns</phrase>
+	<phrase weight="0.004648460197559558" count="8">one/cd word/nn</phrase>
+	<phrase weight="0.004067402672864613" count="7">history/nn prophecy/nn</phrase>
+	<phrase weight="0.004067402672864613" count="7">light/nn life/nn</phrase>
+	<phrase weight="0.003486345148169669" count="6">history/nn christ/pn</phrase>
+	<phrase weight="0.003486345148169669" count="6">certainty/nn victory/nn</phrase>
+	<phrase weight="0.003486345148169669" count="6">action/nn christ/pn</phrase>
+	<phrase weight="0.003486345148169669" count="6">resurrection/nn christ/pn</phrase>
+	<phrase weight="0.003486345148169669" count="6">witness/nn christ/pn</phrase>
+	<phrase weight="0.003486345148169669" count="6">spoken/vbn christ/pn</phrase>
+	<phrase weight="0.002905287623474724" count="5">christ/pn light/nn</phrase>
+	<phrase weight="0.002905287623474724" count="5">prophecy/nn history/nn</phrase>
+	<phrase weight="0.002905287623474724" count="5">saul/pn tarsus/nns</phrase>
+	<phrase weight="0.002905287623474724" count="5">prophetic/jj word/nn</phrase>
+	<phrase weight="0.002905287623474724" count="5">word/nn christ/pn</phrase>
+  </topic>
+  <topic id="10" alpha="0.25" totalTokens="8716" titles="creator/nn creature/nn, god/nn, creation/nn, also/rb, nature/nn, knowledge/nn, glory/pn, creaturely/rb, created/vbn, word/nn">
+	<word weight="0.0927030748049564" count="808">god/nn</word>
+	<word weight="0.04187700780174392" count="365">creation/nn</word>
+	<word weight="0.03900871959614502" count="340">creature/nn</word>
+	<word weight="0.03086278109224415" count="269">creator/nn</word>
+	<word weight="0.021225332721431848" count="185">also/rb</word>
+	<word weight="0.019619091326296467" count="171">nature/nn</word>
+	<word weight="0.018357044515832952" count="160">knowledge/nn</word>
+	<word weight="0.014800367140890317" count="129">glory/pn</word>
+	<word weight="0.014341441027994492" count="125">creaturely/rb</word>
+	<word weight="0.01330885727397889" count="116">created/vbn</word>
+	<word weight="0.012276273519963287" count="107">word/nn</word>
+	<word weight="0.01158788435061955" count="101">basis/nn</word>
+	<word weight="0.011243689765947683" count="98">even/rb</word>
+	<word weight="0.011243689765947683" count="98">thus/rb</word>
+	<word weight="0.010784763653051858" count="94">earth/nn</word>
+	<word weight="0.010096374483708122" count="88">reality/nn</word>
+	<word weight="0.00986691142726021" count="86">son/pn</word>
+	<word weight="0.008719596145020651" count="76">power/nn</word>
+	<word weight="0.00791647544745296" count="69">certainly/rb</word>
+	<word weight="0.007801743919229004" count="68">nothingness/nn</word>
+	<phrase weight="0.0350140056022409" count="25">creator/nn creature/nn</phrase>
+	<phrase weight="0.011204481792717087" count="8">creature/nn creator/nn</phrase>
+	<phrase weight="0.008403361344537815" count="6">god/nn creator/nn</phrase>
+	<phrase weight="0.0070028011204481795" count="5">heaven/nn earth/nn</phrase>
+	<phrase weight="0.0070028011204481795" count="5">glory/pn god/nn</phrase>
+	<phrase weight="0.0070028011204481795" count="5">word/nn god/nn</phrase>
+	<phrase weight="0.0056022408963585435" count="4">human/jj nature/nn</phrase>
+	<phrase weight="0.0056022408963585435" count="4">also/rb creator/nn</phrase>
+	<phrase weight="0.0056022408963585435" count="4">creation/nn creator/nn creature/nn</phrase>
+	<phrase weight="0.0056022408963585435" count="4">benevolence/nn creator/nn</phrase>
+	<phrase weight="0.0056022408963585435" count="4">creature/nn god/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">also/rb creator/nn sustainer/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">god/nn also/rb</phrase>
+	<phrase weight="0.004201680672268907" count="3">beauty/nn god/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">image/nn god/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">creation/nn creation/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">god/nn god/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">created/vbn heaven/nn earth/nn</phrase>
+	<phrase weight="0.004201680672268907" count="3">non/fw-* spatial/jj</phrase>
+	<phrase weight="0.004201680672268907" count="3">created/vbn god/nn</phrase>
+  </topic>
+  <topic id="11" alpha="0.25" totalTokens="12464" titles="old/jj testament/nn, new/jj testament/nn, forty/cd days/nns, time/nn time/nn, death/nn, resurrection/nn, history/nn, day/nn, event/nn, man/nn">
+	<word weight="0.0897785622593068" count="1119">time/nn</word>
+	<word weight="0.03361681643132221" count="419">testament/nn</word>
+	<word weight="0.027439024390243903" count="342">death/nn</word>
+	<word weight="0.020137997432605904" count="251">resurrection/nn</word>
+	<word weight="0.018934531450577663" count="236">old/jj</word>
+	<word weight="0.015965982028241336" count="199">history/nn</word>
+	<word weight="0.015645057766367137" count="195">new/jj</word>
+	<word weight="0.014682284980744545" count="183">day/nn</word>
+	<word weight="0.013077663671373555" count="163">event/nn</word>
+	<word weight="0.012676508344030809" count="158">man/nn</word>
+	<word weight="0.012034659820282413" count="150">life/nn</word>
+	<word weight="0.011473042362002568" count="143">come/vb</word>
+	<word weight="0.011071887034659821" count="138">future/nn</word>
+	<word weight="0.010670731707317074" count="133">end/nn</word>
+	<word weight="0.010510269576379974" count="131">disciples/nns</word>
+	<word weight="0.009146341463414634" count="114">heaven/nn</word>
+	<word weight="0.009146341463414634" count="114">still/rb</word>
+	<word weight="0.008905648267008986" count="111">last/ap</word>
+	<word weight="0.00834403080872914" count="104">hope/pn</word>
+	<word weight="0.008103337612323491" count="101">expectation/nn</word>
+	<phrase weight="0.0348993288590604" count="52">old/jj testament/nn</phrase>
+	<phrase weight="0.028859060402684565" count="43">new/jj testament/nn</phrase>
+	<phrase weight="0.018120805369127517" count="27">forty/cd days/nns</phrase>
+	<phrase weight="0.0174496644295302" count="26">time/nn time/nn</phrase>
+	<phrase weight="0.013422818791946308" count="20">yesterday/nr day/nn</phrase>
+	<phrase weight="0.006040268456375839" count="9">death/nn resurrection/nn</phrase>
+	<phrase weight="0.004026845637583893" count="6">easter/pn day/nn</phrase>
+	<phrase weight="0.004026845637583893" count="6">last/ap time/nn</phrase>
+	<phrase weight="0.003355704697986577" count="5">time/nn history/nn</phrase>
+	<phrase weight="0.003355704697986577" count="5">yesterday/nr past/in</phrase>
+	<phrase weight="0.0026845637583892616" count="4">disciples/nns forty/cd days/nns</phrase>
+	<phrase weight="0.0026845637583892616" count="4">time/nn coming/vbg</phrase>
+	<phrase weight="0.0026845637583892616" count="4">particular/jj time/nn</phrase>
+	<phrase weight="0.0026845637583892616" count="4">easter/pn history/nn</phrase>
+	<phrase weight="0.0026845637583892616" count="4">verily/rb verily/rb</phrase>
+	<phrase weight="0.0026845637583892616" count="4">time/nn time/nn time/nn</phrase>
+	<phrase weight="0.0026845637583892616" count="4">baptism/nn behind/in</phrase>
+	<phrase weight="0.0026845637583892616" count="4">history/nn time/nn</phrase>
+	<phrase weight="0.0026845637583892616" count="4">life/nn death/nn</phrase>
+	<phrase weight="0.0026845637583892616" count="4">apostles/nns communities/nns</phrase>
+  </topic>
+  <topic id="12" alpha="0.25" totalTokens="23837" titles="took/vbd place/nn, takes/vbz place/nn, taken/vbn place/nn, christ/pn, reconciliation/nn world/nn, one/cd, act/nn, faith/pn, christian/pn, knowledge/nn">
+	<word weight="0.13130847002559046" count="3130">christ/pn</word>
+	<word weight="0.04216134580693879" count="1005">place/nn</word>
+	<word weight="0.025968032890044887" count="619">one/cd</word>
+	<word weight="0.02173092251541721" count="518">world/nn</word>
+	<word weight="0.020556278055124385" count="490">act/nn</word>
+	<word weight="0.019968955824977975" count="476">faith/pn</word>
+	<word weight="0.01652892561983471" count="394">christian/pn</word>
+	<word weight="0.016235264504761506" count="387">knowledge/nn</word>
+	<word weight="0.013718169232705458" count="327">event/nn</word>
+	<word weight="0.013172798590426648" count="314">reconciliation/nn</word>
+	<word weight="0.009774719973150985" count="233">whole/jj</word>
+	<word weight="0.008935688215798968" count="213">took/vbd</word>
+	<word weight="0.00855812392499056" count="204">doctrine/nn</word>
+	<word weight="0.008054704870579351" count="192">activity/nn</word>
+	<word weight="0.00801275328271175" count="191">atonement/nn</word>
+	<word weight="0.00801275328271175" count="191">new/jj</word>
+	<word weight="0.00797080169484415" count="190">free/jj</word>
+	<word weight="0.007802995343373747" count="186">work/nn</word>
+	<word weight="0.006963963586021731" count="166">way/pn</word>
+	<word weight="0.006796157234551328" count="162">taken/vbn</word>
+	<phrase weight="0.028478437754271765" count="70">took/vbd place/nn</phrase>
+	<phrase weight="0.01871440195280716" count="46">takes/vbz place/nn</phrase>
+	<phrase weight="0.014646053702196907" count="36">taken/vbn place/nn</phrase>
+	<phrase weight="0.009764035801464606" count="24">reconciliation/nn world/nn</phrase>
+	<phrase weight="0.006916192026037429" count="17">place/nn christ/pn</phrase>
+	<phrase weight="0.005695687550854353" count="14">christ/pn one/cd</phrase>
+	<phrase weight="0.005695687550854353" count="14">justification/nn sanctification/nn</phrase>
+	<phrase weight="0.004475183075671277" count="11">doctrine/nn reconciliation/nn</phrase>
+	<phrase weight="0.0040683482506102524" count="10">atonement/nn made/vbd</phrase>
+	<phrase weight="0.0040683482506102524" count="10">knowledge/nn christ/pn</phrase>
+	<phrase weight="0.003661513425549227" count="9">christ/pn first/od</phrase>
+	<phrase weight="0.003661513425549227" count="9">action/nn christ/pn</phrase>
+	<phrase weight="0.0032546786004882017" count="8">individual/jj christian/pn</phrase>
+	<phrase weight="0.0028478437754271765" count="7">act/nn reconciliation/nn</phrase>
+	<phrase weight="0.0028478437754271765" count="7">event/nn atonement/nn</phrase>
+	<phrase weight="0.0024410089503661514" count="6">terminus/nn quo/fw-wdt</phrase>
+	<phrase weight="0.0024410089503661514" count="6">work/nn christ/pn</phrase>
+	<phrase weight="0.0024410089503661514" count="6">one/cd side/nn</phrase>
+	<phrase weight="0.0024410089503661514" count="6">faith/pn christ/pn</phrase>
+	<phrase weight="0.0024410089503661514" count="6">took/vbd place/nn christ/pn</phrase>
+  </topic>
+  <topic id="13" alpha="0.25" totalTokens="42023" titles="jesus/pn christ/pn, god/nn christ/pn, grace/pn god/nn, god/nn god/nn, christ/pn god/nn, god/nn therefore/rb, word/nn god/nn, christ/pn therefore/rb, revealed/vbd christ/pn, covenant/nn grace/pn">
+	<word weight="0.16702758013468816" count="7019">god/nn</word>
+	<word weight="0.1317611784023035" count="5537">christ/pn</word>
+	<word weight="0.03260119458391833" count="1370">jesus/pn</word>
+	<word weight="0.02905551721676225" count="1221">therefore/rb</word>
+	<word weight="0.02284463270113985" count="960">divine/jj</word>
+	<word weight="0.021964162482450086" count="923">grace/pn</word>
+	<word weight="0.01401613402184518" count="589">revealed/vbd</word>
+	<word weight="0.013873355067463056" count="583">fact/nn</word>
+	<word weight="0.012873902386788188" count="541">true/jj</word>
+	<word weight="0.010922590010232491" count="459">eternal/jj</word>
+	<word weight="0.010732218071056326" count="451">way/pn</word>
+	<word weight="0.01051804963948314" count="442">word/nn</word>
+	<word weight="0.010399067177498037" count="437">work/nn</word>
+	<word weight="0.009233039050044023" count="388">covenant/nn</word>
+	<word weight="0.008780905694500631" count="369">become/vb</word>
+	<word weight="0.008566737262927445" count="360">truth/nn</word>
+	<word weight="0.008019417937795969" count="337">cannot/md*</word>
+	<word weight="0.0070199652571211" count="295">name/nn</word>
+	<word weight="0.006591628393974728" count="277">made/vbd</word>
+	<word weight="0.006544035409180687" count="275">every/at</word>
+	<phrase weight="0.03860049439056855" count="203">jesus/pn christ/pn</phrase>
+	<phrase weight="0.02205742536603917" count="116">god/nn christ/pn</phrase>
+	<phrase weight="0.020916524054002662" count="110">grace/pn god/nn</phrase>
+	<phrase weight="0.015592317931165622" count="82">god/nn god/nn</phrase>
+	<phrase weight="0.012169613995056094" count="64">christ/pn god/nn</phrase>
+	<phrase weight="0.008556759840273816" count="45">god/nn therefore/rb</phrase>
+	<phrase weight="0.007986309184255563" count="42">word/nn god/nn</phrase>
+	<phrase weight="0.006274957216200799" count="33">christ/pn therefore/rb</phrase>
+	<phrase weight="0.006084806997528047" count="32">revealed/vbd christ/pn</phrase>
+	<phrase weight="0.0053242061228370415" count="28">covenant/nn grace/pn</phrase>
+	<phrase weight="0.004753755466818787" count="25">god/nn eternal/jj</phrase>
+	<phrase weight="0.004563605248146035" count="24">jesus/pn jesus/pn</phrase>
+	<phrase weight="0.004563605248146035" count="24">hand/nn god/nn</phrase>
+	<phrase weight="0.004563605248146035" count="24">grace/pn christ/pn</phrase>
+	<phrase weight="0.004563605248146035" count="24">covenant/nn god/nn</phrase>
+	<phrase weight="0.004183304810800532" count="22">god/nn revealed/vbd</phrase>
+	<phrase weight="0.003993154592127781" count="21">work/nn christ/pn</phrase>
+	<phrase weight="0.003612854154782278" count="19">everything/pn depends/vbz</phrase>
+	<phrase weight="0.003612854154782278" count="19">name/nn christ/pn</phrase>
+	<phrase weight="0.003612854154782278" count="19">god/nn become/vb</phrase>
+  </topic>
+  <topic id="14" alpha="0.25" totalTokens="8377" titles="election/nn, jesus/pn, christ/pn, elect/vb, judas/pn, apostles/nns, death/nn, peter/pn, power/nn, rejected/vbd">
+	<word weight="0.04213919064104094" count="353">election/nn</word>
+	<word weight="0.03485734749910469" count="292">jesus/pn</word>
+	<word weight="0.031037364211531575" count="260">christ/pn</word>
+	<word weight="0.029843619434164977" count="250">elect/vb</word>
+	<word weight="0.028053002268115076" count="235">judas/pn</word>
+	<word weight="0.0223230273367554" count="187">apostles/nns</word>
+	<word weight="0.017070550316342366" count="143">death/nn</word>
+	<word weight="0.015279933150292467" count="128">peter/pn</word>
+	<word weight="0.01289244359555927" count="108">power/nn</word>
+	<word weight="0.01181807329592933" count="99">rejected/vbd</word>
+	<word weight="0.01181807329592933" count="99">rejected/vbn</word>
+	<word weight="0.01169869881819267" count="98">rejection/nn</word>
+	<word weight="0.010504954040826072" count="88">place/nn</word>
+	<word weight="0.008953085830249492" count="75">others/nns</word>
+	<word weight="0.008714336874776173" count="73">world/nn</word>
+	<word weight="0.007759341052882894" count="65">handing/vbg</word>
+	<word weight="0.007759341052882894" count="65">apostle/nn</word>
+	<word weight="0.007639966575146233" count="64">community/nn</word>
+	<word weight="0.007520592097409574" count="63">delivered/vbn</word>
+	<word weight="0.007281843141936254" count="61">individual/jj</word>
+	<phrase weight="0.009767092411720512" count="13">election/nn christ/pn</phrase>
+	<phrase weight="0.006010518407212622" count="8">election/nn election/nn</phrase>
+	<phrase weight="0.003756574004507889" count="5">election/nn calling/vbg</phrase>
+	<phrase weight="0.003756574004507889" count="5">elect/vb individual/jj</phrase>
+	<phrase weight="0.003756574004507889" count="5">judas/pn iscariot/nn</phrase>
+	<phrase weight="0.003756574004507889" count="5">peter/pn peter/pn</phrase>
+	<phrase weight="0.003005259203606311" count="4">apostolic/jj tradition/nn</phrase>
+	<phrase weight="0.003005259203606311" count="4">apostolic/jj group/nn</phrase>
+	<phrase weight="0.003005259203606311" count="4">prototype/nn copy/nn</phrase>
+	<phrase weight="0.003005259203606311" count="4">precedence/nn others/nns</phrase>
+	<phrase weight="0.003005259203606311" count="4">omnipotent/nn loving/vbg kindness/nn</phrase>
+	<phrase weight="0.003005259203606311" count="4">peter/pn twelve/cd</phrase>
+	<phrase weight="0.003005259203606311" count="4">judas/pn handed/vbd</phrase>
+	<phrase weight="0.002253944402704733" count="3">loving/vbg kindness/nn</phrase>
+	<phrase weight="0.002253944402704733" count="3">proximity/nn jesus/pn</phrase>
+	<phrase weight="0.002253944402704733" count="3">fact/nn elect/vb</phrase>
+	<phrase weight="0.002253944402704733" count="3">thirty/cd pieces/nns silver/nn</phrase>
+	<phrase weight="0.002253944402704733" count="3">washing/vbg feet/nns</phrase>
+	<phrase weight="0.002253944402704733" count="3">judas/pn hand/nn</phrase>
+	<phrase weight="0.002253944402704733" count="3">raised/vbn jesus/pn</phrase>
+  </topic>
+  <topic id="15" alpha="0.25" totalTokens="12211" titles="death/nn resurrection/nn, taken/vbn place/nn, judgment/nn, son/pn, faith/pn, sin/nn, dead/jj, justification/nn, crucified/vbd, father/nn">
+	<word weight="0.04356727540741954" count="532">death/nn</word>
+	<word weight="0.028417001064613874" count="347">resurrection/nn</word>
+	<word weight="0.024322332323315043" count="297">judgment/nn</word>
+	<word weight="0.022520678077143558" count="275">son/pn</word>
+	<word weight="0.021374170829579885" count="261">place/nn</word>
+	<word weight="0.019326836458930474" count="236">faith/pn</word>
+	<word weight="0.01842600933584473" count="225">sin/nn</word>
+	<word weight="0.016378674965195315" count="200">dead/jj</word>
+	<word weight="0.015232167717631643" count="186">taken/vbn</word>
+	<word weight="0.015150274342805668" count="185">justification/nn</word>
+	<word weight="0.014085660470067972" count="172">crucified/vbd</word>
+	<word weight="0.013102939972156252" count="160">father/nn</word>
+	<word weight="0.012120219474244534" count="148">righteousness/nn</word>
+	<word weight="0.01171075260011465" count="143">form/nn</word>
+	<word weight="0.009909098353943166" count="121">judge/nn</word>
+	<word weight="0.009745311604291212" count="119">come/vb</word>
+	<word weight="0.009417738104987307" count="115">rom/nn</word>
+	<word weight="0.009253951355335353" count="113">done/vbn</word>
+	<word weight="0.009253951355335353" count="113">power/nn</word>
+	<word weight="0.008353124232249612" count="102">right/ql</word>
+	<phrase weight="0.028472821397756688" count="33">death/nn resurrection/nn</phrase>
+	<phrase weight="0.01898188093183779" count="22">taken/vbn place/nn</phrase>
+	<phrase weight="0.013805004314063849" count="16">resurrection/nn dead/jj</phrase>
+	<phrase weight="0.012079378774805867" count="14">raised/vbn dead/jj</phrase>
+	<phrase weight="0.011216566005176877" count="13">death/nn cross/nn</phrase>
+	<phrase weight="0.0060396893874029335" count="7">judge/nn judged/vbn</phrase>
+	<phrase weight="0.0060396893874029335" count="7">father/nn son/pn</phrase>
+	<phrase weight="0.0060396893874029335" count="7">suffering/vbg death/nn</phrase>
+	<phrase weight="0.0060396893874029335" count="7">forgiveness/nn sins/nns</phrase>
+	<phrase weight="0.005176876617773943" count="6">crucified/vbd risen/vbn</phrase>
+	<phrase weight="0.005176876617773943" count="6">gethsemane/nn golgotha/nn</phrase>
+	<phrase weight="0.004314063848144953" count="5">son/pn father/nn</phrase>
+	<phrase weight="0.004314063848144953" count="5">received/vbd accepted/vbn</phrase>
+	<phrase weight="0.004314063848144953" count="5">judgment/nn death/nn</phrase>
+	<phrase weight="0.004314063848144953" count="5">risen/vbn dead/jj</phrase>
+	<phrase weight="0.004314063848144953" count="5">suffering/vbg dying/vbg</phrase>
+	<phrase weight="0.004314063848144953" count="5">died/vbd risen/vbn</phrase>
+	<phrase weight="0.003451251078515962" count="4">take/vb place/nn</phrase>
+	<phrase weight="0.003451251078515962" count="4">alien/jj righteousness/nn</phrase>
+	<phrase weight="0.003451251078515962" count="4">dead/jj buried/vbn</phrase>
+  </topic>
+  <topic id="16" alpha="0.25" totalTokens="9282" titles="human/jj essence/nn, son/pn, spirit/nn, power/nn, also/rb, divine/jj, existence/nn, exaltation/nn, miracles/nns, kingdom/nn">
+	<word weight="0.05591467356173239" count="519">son/pn</word>
+	<word weight="0.039862098685628095" count="370">human/jj</word>
+	<word weight="0.02865761689291101" count="266">essence/nn</word>
+	<word weight="0.024455936220642103" count="227">spirit/nn</word>
+	<word weight="0.021116138763197588" count="196">power/nn</word>
+	<word weight="0.018207282913165267" count="169">also/rb</word>
+	<word weight="0.017345399698340876" count="161">divine/jj</word>
+	<word weight="0.0147597500538677" count="137">existence/nn</word>
+	<word weight="0.012497306614953674" count="116">exaltation/nn</word>
+	<word weight="0.01185089420383538" count="110">miracles/nns</word>
+	<word weight="0.011635423400129283" count="108">kingdom/nn</word>
+	<word weight="0.009480715363068304" count="88">royal/pn</word>
+	<word weight="0.009480715363068304" count="88">holy/jj</word>
+	<word weight="0.00883430295195001" count="82">gospels/nns</word>
+	<word weight="0.008726567550096962" count="81">nature/nn</word>
+	<word weight="0.008403361344537815" count="78">see/pn</word>
+	<word weight="0.0072182719241542775" count="67">exalted/vbn</word>
+	<word weight="0.0072182719241542775" count="67">witness/nn</word>
+	<word weight="0.007110536522301228" count="66">testament/nn</word>
+	<word weight="0.006679594914889032" count="62">union/nn</word>
+	<phrase weight="0.05177372962607862" count="54">human/jj essence/nn</phrase>
+	<phrase weight="0.015340364333652923" count="16">holy/jj spirit/nn</phrase>
+	<phrase weight="0.011505273250239693" count="12">human/jj nature/nn</phrase>
+	<phrase weight="0.010546500479386385" count="11">divine/jj essence/nn</phrase>
+	<phrase weight="0.009587727708533078" count="10">resurrection/nn ascension/nn</phrase>
+	<phrase weight="0.00862895493767977" count="9">exaltation/nn son/pn</phrase>
+	<phrase weight="0.006711409395973154" count="7">divine/jj human/jj essence/nn</phrase>
+	<phrase weight="0.006711409395973154" count="7">humiliation/nn son/pn</phrase>
+	<phrase weight="0.005752636625119847" count="6">nazareth/nn son/pn</phrase>
+	<phrase weight="0.004793863854266539" count="5">humiliation/nn exaltation/nn</phrase>
+	<phrase weight="0.004793863854266539" count="5">also/rb son/pn</phrase>
+	<phrase weight="0.004793863854266539" count="5">divine/jj human/jj</phrase>
+	<phrase weight="0.003835091083413231" count="4">unio/nn mystica/nn</phrase>
+	<phrase weight="0.003835091083413231" count="4">κηρύσσειν/nn baptist/nn</phrase>
+	<phrase weight="0.003835091083413231" count="4">existence/nn royal/pn</phrase>
+	<phrase weight="0.003835091083413231" count="4">human/jj existence/nn</phrase>
+	<phrase weight="0.003835091083413231" count="4">humiliated/vbn son/pn</phrase>
+	<phrase weight="0.003835091083413231" count="4">power/nn resurrection/nn</phrase>
+	<phrase weight="0.0028763183125599234" count="3">elevated/vbn exalted/vbn</phrase>
+	<phrase weight="0.0028763183125599234" count="3">communicatio/nn gratiarum/nn</phrase>
+  </topic>
+  <topic id="17" alpha="0.25" totalTokens="14102" titles="man/nn man/nn, human/jj, humanity/nn, men/nns, sin/nn, fact/nn, jesus/pn, nature/nn, place/nn, true/jj">
+	<word weight="0.2829385902708836" count="3990">man/nn</word>
+	<word weight="0.03205219117855623" count="452">human/jj</word>
+	<word weight="0.02552829385902709" count="360">humanity/nn</word>
+	<word weight="0.023613671819600057" count="333">men/nns</word>
+	<word weight="0.020564458941994043" count="290">sin/nn</word>
+	<word weight="0.014962416678485321" count="211">fact/nn</word>
+	<word weight="0.014040561622464899" count="198">jesus/pn</word>
+	<word weight="0.010069493688838463" count="142">nature/nn</word>
+	<word weight="0.0093603744149766" count="132">place/nn</word>
+	<word weight="0.009289462487590413" count="131">true/jj</word>
+	<word weight="0.008793078995887108" count="124">light/nn</word>
+	<word weight="0.00836760743156999" count="118">existence/nn</word>
+	<word weight="0.007871223939866686" count="111">given/vbn</word>
+	<word weight="0.007303928520777195" count="103">form/nn</word>
+	<word weight="0.006594809246915331" count="93">hope/pn</word>
+	<word weight="0.006382073464756772" count="90">misery/nn</word>
+	<word weight="0.006382073464756772" count="90">relation/nn</word>
+	<word weight="0.0062402496099844" count="88">mystery/nn</word>
+	<word weight="0.006098425755212027" count="86">speaks/vbz</word>
+	<word weight="0.005956601900439654" count="84">work/nn</word>
+	<phrase weight="0.0446927374301676" count="56">man/nn man/nn</phrase>
+	<phrase weight="0.01596169193934557" count="20">man/nn sin/nn</phrase>
+	<phrase weight="0.014365522745411013" count="18">existence/nn man/nn</phrase>
+	<phrase weight="0.010375099760574621" count="13">every/at man/nn</phrase>
+	<phrase weight="0.008778930566640064" count="11">fellow/nn man/nn</phrase>
+	<phrase weight="0.008778930566640064" count="11">human/jj nature/nn</phrase>
+	<phrase weight="0.007980845969672785" count="10">man/nn general/nn</phrase>
+	<phrase weight="0.007980845969672785" count="10">humanity/nn man/nn</phrase>
+	<phrase weight="0.007980845969672785" count="10">man/nn jesus/pn</phrase>
+	<phrase weight="0.006384676775738229" count="8">fact/nn man/nn</phrase>
+	<phrase weight="0.006384676775738229" count="8">sin/nn man/nn</phrase>
+	<phrase weight="0.00558659217877095" count="7">true/jj man/nn</phrase>
+	<phrase weight="0.00558659217877095" count="7">man/nn fellows/nns</phrase>
+	<phrase weight="0.00558659217877095" count="7">man/nn men/nns</phrase>
+	<phrase weight="0.00558659217877095" count="7">man/nn generally/rb</phrase>
+	<phrase weight="0.004788507581803671" count="6">comes/vbz man/nn</phrase>
+	<phrase weight="0.004788507581803671" count="6">human/jj situation/nn</phrase>
+	<phrase weight="0.004788507581803671" count="6">fellow/nn humanity/nn</phrase>
+	<phrase weight="0.0039904229848363925" count="5">becoming/vbg man/nn</phrase>
+	<phrase weight="0.0039904229848363925" count="5">misery/nn man/nn</phrase>
+  </topic>
+  <topic id="18" alpha="0.25" totalTokens="6858" titles="command/nn, man/nn, jesus/pn, obedience/nn, law/nn, sanctification/nn, action/nn, disciples/nns, kingdom/nn, good/jj">
+	<word weight="0.04024496937882765" count="276">command/nn</word>
+	<word weight="0.038641003207932345" count="265">man/nn</word>
+	<word weight="0.026829979585885098" count="184">jesus/pn</word>
+	<word weight="0.02026829979585885" count="139">obedience/nn</word>
+	<word weight="0.01910177894429863" count="131">law/nn</word>
+	<word weight="0.016622922134733157" count="114">sanctification/nn</word>
+	<word weight="0.015456401283172936" count="106">action/nn</word>
+	<word weight="0.01516477107028288" count="104">disciples/nns</word>
+	<word weight="0.013269174686497522" count="91">kingdom/nn</word>
+	<word weight="0.011081948089822106" count="76">good/jj</word>
+	<word weight="0.01079031787693205" count="74">obedient/jj</word>
+	<word weight="0.01079031787693205" count="74">call/vb</word>
+	<word weight="0.010498687664041995" count="72">grace/pn</word>
+	<word weight="0.010498687664041995" count="72">form/nn</word>
+	<word weight="0.009477981918926801" count="65">call/nn</word>
+	<word weight="0.009332166812481774" count="64">follow/vb</word>
+	<word weight="0.009186351706036745" count="63">people/nns</word>
+	<word weight="0.008165645960921552" count="56">rich/pn</word>
+	<word weight="0.008019830854476525" count="55">commands/nns</word>
+	<word weight="0.008019830854476525" count="55">wills/nns</word>
+	<phrase weight="0.025974025974025976" count="18">sermon/nn mount/nn</phrase>
+	<phrase weight="0.012987012987012988" count="9">rich/pn man/nn</phrase>
+	<phrase weight="0.007215007215007215" count="5">reigns/vbz conquers/nns</phrase>
+	<phrase weight="0.005772005772005772" count="4">command/nn obedience/nn</phrase>
+	<phrase weight="0.005772005772005772" count="4">goodness/nn rich/pn</phrase>
+	<phrase weight="0.005772005772005772" count="4">valid/jj command/nn</phrase>
+	<phrase weight="0.005772005772005772" count="4">saints/nns sanctity/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">follow/vb jesus/pn</phrase>
+	<phrase weight="0.004329004329004329" count="3">obedience/nn obedience/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">obedience/nn disobedience/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">obedient/jj disobedient/jj</phrase>
+	<phrase weight="0.004329004329004329" count="3">condemned/vbd judgment/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">nostre/nn seigneur/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">commanding/vbg forbidding/vbg</phrase>
+	<phrase weight="0.004329004329004329" count="3">form/nn command/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">participatio/nn christi/pn</phrase>
+	<phrase weight="0.004329004329004329" count="3">call/vb discipleship/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">man/nn sanctification/nn</phrase>
+	<phrase weight="0.004329004329004329" count="3">commander/nn command/nn</phrase>
+	<phrase weight="0.002886002886002886" count="2">sanctifying/vbg grace/pn</phrase>
+  </topic>
+  <topic id="19" alpha="0.25" totalTokens="5306" titles="god/nn, election/nn, christ/pn, man/nn, divine/jj, eternal/jj, elected/vbn, decision/nn, father/nn, predestination/nn">
+	<word weight="0.07538635506973237" count="400">god/nn</word>
+	<word weight="0.0687900490011308" count="365">election/nn</word>
+	<word weight="0.060874481718808895" count="323">christ/pn</word>
+	<word weight="0.05672823218997362" count="301">man/nn</word>
+	<word weight="0.03562005277044855" count="189">divine/jj</word>
+	<word weight="0.02355823595929137" count="125">eternal/jj</word>
+	<word weight="0.021673577082548058" count="115">elected/vbn</word>
+	<word weight="0.01997738409347908" count="106">decision/nn</word>
+	<word weight="0.016961929890689786" count="90">father/nn</word>
+	<word weight="0.01620806633999246" count="86">predestination/nn</word>
+	<word weight="0.015265736901620806" count="81">electing/vbg</word>
+	<word weight="0.014323407463249152" count="76">decree/nn</word>
+	<word weight="0.013004146249528835" count="69">son/pn</word>
+	<word weight="0.012438748586505842" count="66">must/md</word>
+	<word weight="0.01206181681115718" count="64">grace/pn</word>
+	<word weight="0.011307953260459858" count="60">name/nn</word>
+	<word weight="0.010931021485111195" count="58">doctrine/nn</word>
+	<word weight="0.008857896720693554" count="47">person/nn</word>
+	<word weight="0.008292499057670561" count="44">beginning/vbg</word>
+	<word weight="0.0079155672823219" count="42">people/nns</word>
+	<phrase weight="0.018137847642079808" count="15">decretum/nn absolutum/nn</phrase>
+	<phrase weight="0.016928657799274487" count="14">election/nn christ/pn</phrase>
+	<phrase weight="0.014510278113663845" count="12">elected/vbn man/nn</phrase>
+	<phrase weight="0.009673518742442563" count="8">divine/jj election/nn</phrase>
+	<phrase weight="0.008464328899637243" count="7">election/nn man/nn</phrase>
+	<phrase weight="0.006045949214026602" count="5">eternal/jj decree/nn</phrase>
+	<phrase weight="0.006045949214026602" count="5">divine/jj election/nn grace/pn</phrase>
+	<phrase weight="0.006045949214026602" count="5">doctrine/nn election/nn</phrase>
+	<phrase weight="0.0048367593712212815" count="4">divine/jj decree/nn</phrase>
+	<phrase weight="0.0048367593712212815" count="4">god/nn man/nn</phrase>
+	<phrase weight="0.0048367593712212815" count="4">divine/jj decision/nn</phrase>
+	<phrase weight="0.0048367593712212815" count="4">god/nn christ/pn</phrase>
+	<phrase weight="0.0048367593712212815" count="4">beginning/nn god/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">christ/pn concept/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">christ/pn electing/vbg god/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">choice/nn god/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">divine/jj predestination/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">decree/nn beginning/vbg</phrase>
+	<phrase weight="0.0036275695284159614" count="3">doctrine/nn predestination/nn</phrase>
+	<phrase weight="0.0036275695284159614" count="3">christ/pn electing/vbg</phrase>
+  </topic>
+</topics>
