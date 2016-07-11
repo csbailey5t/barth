@@ -188,7 +188,7 @@ def main(argv=None):
         word_list = None
 
     counts = corpus.count_vectorize()
-    percs = corpus.percent_vectorize()
+    # percs = corpus.percent_vectorize()
 
     print('wilcoxon')
     output_rows = []
@@ -203,7 +203,7 @@ def main(argv=None):
                     w.statistic,
                     w.pvalue,
                     '\n'.join(sparklines(counts[t])),
-                    '\n'.join(sparklines(percs[t])),
+                    # '\n'.join(sparklines(percs[t])),
                 ))
 
     output_rows.sort(key=operator.itemgetter(2))
